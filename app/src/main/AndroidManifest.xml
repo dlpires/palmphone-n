@@ -10,12 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
+        <!--Pagina de Login (Inicial)-->
         <activity android:name=".login_page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+
+        <!--Menu Principal-->
+        <activity android:name=".menu_page"></activity>
 
     </application>
 

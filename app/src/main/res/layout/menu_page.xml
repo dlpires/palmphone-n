@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:elevation="0dp"
+        android:minHeight="57dp"
+        android:theme="?attr/actionBarTheme"
+        app:title="PalmPhone"
+        app:titleTextColor="@android:color/black" />
+
+    <LinearLayout
+        android:id="@+id/formMenu"
+        android:layout_width="match_parent"
+        android:layout_height="79dp"
+        android:layout_marginBottom="15dp"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/buttonPerfil"
+            android:layout_width="352dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorPrimary"
+            android:text="Perfil"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonColeta"
+            android:layout_width="352dp"
+            android:layout_height="33dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.04"
+            android:background="@color/colorPrimary"
+            android:text="Iniciar Coleta"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/formSync"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="0.04"
+        android:background="@android:drawable/editbox_background"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/buttonSync"
+            android:layout_width="352dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/Sync"
+            android:text="Sincronizar dados"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
