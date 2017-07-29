@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="Perfil"
+        app:titleTextColor="@android:color/black" />
+
+    <ImageView
+        android:id="@+id/imageUser"
+        android:layout_width="141dp"
+        android:layout_height="88dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:layout_weight="0.24"
+        android:visibility="visible"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/nameUser"
+            android:layout_width="315dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:editable="false"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Josivaldo da Silva"
+            android:inputType="textPersonName"
+            android:textColorHint="@android:color/darker_gray" />
+
+        <EditText
+            android:id="@+id/dtNasc"
+            android:layout_width="315dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:editable="false"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="10/08/1980"
+            android:inputType="textPersonName"
+            android:textColorHint="@android:color/darker_gray" />
+
+        <EditText
+            android:id="@+id/cpf"
+            android:layout_width="313dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:editable="false"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="078.671.876-X"
+            android:inputType="textPersonName"
+            android:textColorHint="@android:color/darker_gray" />
+    </LinearLayout>
+
+</LinearLayout>

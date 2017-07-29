@@ -23,6 +23,12 @@
         <!--Menu Principal-->
         <activity android:name=".menu_page"></activity>
 
+        <!--Perfil Usuário-->
+        <activity android:name=".user_page"></activity>
+
+        <!--Página de Opções: Coletor-->
+        <activity android:name=".coletor_page"></activity>
+
     </application>
 
 </manifest>
