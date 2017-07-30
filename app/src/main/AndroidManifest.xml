@@ -29,6 +29,9 @@
         <!--Página de Opções: Coletor-->
         <activity android:name=".coletor_page"></activity>
 
+        <!--Página de Opções: Coleta de Dados-->
+        <activity android:name=".coletadados_page"></activity>
+
     </application>
 
 </manifest>

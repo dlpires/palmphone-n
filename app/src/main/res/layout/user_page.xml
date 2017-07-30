@@ -10,7 +10,7 @@
         android:id="@+id/toolbarUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -35,7 +35,7 @@
 
         <EditText
             android:id="@+id/nameUser"
-            android:layout_width="315dp"
+            android:layout_width="348dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
@@ -48,7 +48,7 @@
 
         <EditText
             android:id="@+id/dtNasc"
-            android:layout_width="315dp"
+            android:layout_width="348dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
@@ -61,7 +61,7 @@
 
         <EditText
             android:id="@+id/cpf"
-            android:layout_width="313dp"
+            android:layout_width="348dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"

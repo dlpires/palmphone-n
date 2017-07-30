@@ -10,7 +10,7 @@
         android:id="@+id/toolbarHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
         android:elevation="0dp"
         android:minHeight="57dp"
@@ -30,7 +30,7 @@
 
         <Button
             android:id="@+id/buttonPerfil"
-            android:layout_width="352dp"
+            android:layout_width="348dp"
             android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
@@ -43,8 +43,8 @@
 
         <Button
             android:id="@+id/buttonColeta"
-            android:layout_width="352dp"
-            android:layout_height="33dp"
+            android:layout_width="348dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_weight="0.04"
             android:background="@color/colorPrimary"
@@ -59,7 +59,7 @@
     <LinearLayout
         android:id="@+id/formSync"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="33dp"
         android:layout_weight="0.04"
         android:background="@android:drawable/editbox_background"
         android:orientation="vertical"
@@ -67,8 +67,8 @@
 
         <Button
             android:id="@+id/buttonSync"
-            android:layout_width="352dp"
-            android:layout_height="match_parent"
+            android:layout_width="348dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
             android:background="@color/Sync"
             android:text="Sincronizar dados"
