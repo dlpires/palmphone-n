@@ -20,12 +20,12 @@
         app:titleTextColor="@android:color/background_dark" />
 
     <LinearLayout
+        android:id="@+id/linearLayoutDigRA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/toolbarColetaDados"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayoutDigRA">
+        android:layout_below="@+id/toolbarColetaDados"
+        android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -53,26 +53,29 @@
             android:layout_gravity="center"
             android:background="@color/colorPrimary"
             android:onClick="verificaLogin"
+            android:src="@android:drawable/checkbox_on_background"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:src="@android:drawable/checkbox_on_background" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/buttonBarcode"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="end"
-        android:layout_marginBottom="22dp"
-        android:layout_marginEnd="22dp"
-        android:clickable="true"
-        app:backgroundTint="@android:color/holo_red_dark"
-        app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/buttonBarcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            app:backgroundTint="@android:color/holo_red_dark"
+            app:fabSize="mini"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
+    </RelativeLayout>
+
 
 </LinearLayout>
