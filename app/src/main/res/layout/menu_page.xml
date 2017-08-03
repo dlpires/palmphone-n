@@ -21,7 +21,7 @@
     <LinearLayout
         android:id="@+id/formMenu"
         android:layout_width="match_parent"
-        android:layout_height="79dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="15dp"
         android:background="@android:drawable/editbox_background"
         android:gravity="center"
@@ -31,7 +31,7 @@
         <Button
             android:id="@+id/buttonPerfil"
             android:layout_width="348dp"
-            android:layout_height="32dp"
+            android:layout_height="42dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:background="@color/colorPrimary"
@@ -44,7 +44,7 @@
         <Button
             android:id="@+id/buttonColeta"
             android:layout_width="348dp"
-            android:layout_height="32dp"
+            android:layout_height="42dp"
             android:layout_gravity="center"
             android:layout_weight="0.04"
             android:background="@color/colorPrimary"
@@ -59,7 +59,7 @@
     <LinearLayout
         android:id="@+id/formSync"
         android:layout_width="match_parent"
-        android:layout_height="33dp"
+        android:layout_height="43dp"
         android:layout_weight="0.04"
         android:background="@android:drawable/editbox_background"
         android:orientation="vertical"
@@ -68,7 +68,7 @@
         <Button
             android:id="@+id/buttonSync"
             android:layout_width="348dp"
-            android:layout_height="32dp"
+            android:layout_height="42dp"
             android:layout_gravity="center"
             android:background="@color/Sync"
             android:text="Sincronizar dados"

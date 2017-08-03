@@ -3,309 +3,210 @@
 
     <item
         is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/190a7227c0d47530097d6d3e53180a6169c8c68d/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a9b2188620e24ee8f50e8cae84c07187240661eb/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/1731b2d00cb450f2deb5a6969bb75548b7914578/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6402665c5eb2c4cf0dc634beae9847a0596e5a3f/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/190a7227c0d47530097d6d3e53180a6169c8c68d/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_a9b2188620e24ee8f50e8cae84c07187240661eb.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/f8ee0746aa0e681125a86e42395a95afa94316ad/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_842ef97db47e019ad8c7e5457e2f7a4193db1c71/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/3f0c5e244038960f03b6680e9345958680d18138/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f4aec78f72c5f0aba3f21a4223a8282c5acbe3f8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/2c7f36863b425859464c0b40545b93f302dc91bb/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2c69133c10086b218a0c9cd6bf1626b80454e707/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/2c7f36863b425859464c0b40545b93f302dc91bb/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_2c69133c10086b218a0c9cd6bf1626b80454e707.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/cbc1076290889f9b3aafe307d03f2eb50612d0c6/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9c867076721c8f05e52f5e39418be7320eb6fac2/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/c6b632edb6fe974428909c7c0095ea8cb99ece1b/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="95519720620b553f63afc789beba9ad582807f7c">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_76994d32214ae24b772c7df98b94e709314a6b67/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/ffc5ceef978916c8a54251cf845cc58284c41b4e/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2b3bebf9ec3ce4d0ec5ad1c7c3ac1600ed4de1f2/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/d0688c6b3e2e7b8a294f7a5f3536cb81a3728f98/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1004ccad1e3b67121bade7d8cc75305a45ebfce8/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/cbc1076290889f9b3aafe307d03f2eb50612d0c6/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_9c867076721c8f05e52f5e39418be7320eb6fac2.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/Documents/palmphone-n/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_d2e887467d0ce72566c60a151399838bec10fe24/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/5f4164487b4f7db844c8637b960660f41827385c/output/jars/classes.jar"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\5ae8b98911fda76d5b5cae628efd99a9f3bccf65\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a28770ec72ecdbaa25daed00c14fb8bd9da2e4ae/classes.dex" />
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b49f5e1b7e1afdf12eac52d9218e595bdb96004d\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/dlpires/Documents/palmphone-n/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="8983da0a056592494a1203ed7b64b9ec28ef72f9">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_63b83b38ab340dc40205451564b4f9fb8aa81eb2/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/6ccdbaaf9694518c20e775a3cf39345432632e22/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b3d970a3554e588a7c20a98a25b7d310e35fa210/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_1a946d756d6caf82cb997f3a0370b259d92a0e94/classes.dex" />
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.1_a63ebcc987e379ca45b81837e1e54014134b9772\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/2d08f334d9d41fec120dc3b3bc0288ea39024a4d/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a563a38da660679e650bd9d0a65227c6da0c95d5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/01262ba9a823339e4c67bfd5937cf0d9f09bbda8/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d9afa6c0019961e5214900b49753b0c95cc4d1dd/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/b75d7083dce24817e16815bd8ea9617081e48133/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b10d87b25a8a66623e4616833155f2c7a0bdedd5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/38e23d55666e9e8a142aa0ecb496a5c26a1d3adc/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_eac600e7b7815b2057ae3d93412739c6eb29d4eb/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/b75d7083dce24817e16815bd8ea9617081e48133/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_b10d87b25a8a66623e4616833155f2c7a0bdedd5.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/531c8786965ad9f4e5b4799d9854f067ad47fc55/output/jars/classes.jar"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\92bae6350961b3c12adefa5bc2fd5905378c6881\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8b9bd8959a5bc9f796f8b3c72f417f83c084d30a/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/01262ba9a823339e4c67bfd5937cf0d9f09bbda8/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_d9afa6c0019961e5214900b49753b0c95cc4d1dd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/0761ecaacf55263a1cfa3c1d9bbd289810049424/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_2449f92d5d6bb262e7e351ea959d509c222316eb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/09713059d4b1412b25a71b78c62453ff441dc04a/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_5eac72af7e8f6c8cf5219e042819681f60ada804.jar" />
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bd22573b35db64b2d49c50b7e96f7d49f7ed402b\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/0761ecaacf55263a1cfa3c1d9bbd289810049424/output/jars/classes.jar"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\0b65c7206b38979f9352566a376bbc39ec5f49e5\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2449f92d5d6bb262e7e351ea959d509c222316eb/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/d0688c6b3e2e7b8a294f7a5f3536cb81a3728f98/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
         sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_1004ccad1e3b67121bade7d8cc75305a45ebfce8.jar" />
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b6c1ba61d49f46304e89ea413b60ff3f3577e066\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/14d29b43fdb0fb6a6f0156592389fe7f884b248f/output/jars/classes.jar"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\4c5f95fead940c3b8ef3cae6a81b5c9a94940be5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f878f048db0df0739fc4a72bf1e1230c8bc69e1e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\872f770992f7815ac30f8e22b8da999d792fcd0d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2814b8af8fa277adbb1606e5bd732f527cd4613f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\9ed24856051c2869e424f99853c8c465b0687dc1\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9bcaead325dc125616f75c667f02b23adcdb5bb9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\1e742b363f7c6b0976bc0cfc85a9f3462671a40b\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e18127bae9acf40a96da606033e61bb5c0db72f5/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/ffc5ceef978916c8a54251cf845cc58284c41b4e/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_2b3bebf9ec3ce4d0ec5ad1c7c3ac1600ed4de1f2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/c6b632edb6fe974428909c7c0095ea8cb99ece1b/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="95519720620b553f63afc789beba9ad582807f7c">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_76994d32214ae24b772c7df98b94e709314a6b67.jar" />
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_dce4a7a26a6abc2ed5afe144e63e01d8063a902b\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/09713059d4b1412b25a71b78c62453ff441dc04a/output/jars/classes.jar"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\41575864e85e1e29154633db1d262f8d5dcb547a\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5eac72af7e8f6c8cf5219e042819681f60ada804/classes.dex" />
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d82b6f2af621a8259dc80bc274ec928696d80369\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/dlpires/.android/build-cache/b3f764e3a0d63ae549f96f0f75f6e3a3a65cd74f/output/jars/classes.jar"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\8ba2c9b4615aa8485514f032ef9914980601bca0\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_67660bb9321953dd74cf069be2ca3c248fc37e9d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\fb4f26400327abdd71bd25a65aebed7eb2cdb0d2\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fa7d84e520359a5fd4059606b8cc811aa4f0b787\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\ad98cd3a09aafe602acc8ea7da095a7213c4e1b7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_78861a301fca4ed1e1e881039e8df0113b2547a5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_3acfe39d515c440d4d5c1bf1db5a6c25de2fc9f0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\85182af9e214914d042ac27dbeb54e596d2ac84d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_550325115bb7976f436e72a7e60f4dbcb6352a53\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\82bfcc57ce34ddfcb5a736dd99db72e95a4b133c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0d755bd7bd76aea5b1c7d70bb2bc322b1fdb5b6d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\ae13e01d0f395bbac3dd4683d34bc2a508dc89f7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2a60611e9198e66a706e3826ea0c5a93cfbe05c4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="e413c2b32a295c4d2f0ae267ba74662e94048fb6">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_56f4be3e94de51ff2c97562850539fbf42121bf2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\316244cea6cb2c60bfe0e59353305a0261d1b7ee\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1903e7ff3779279dd925ab0fed8475dd67db0238\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\bdb9cd322ea46d26fabc2326abe9728945ae29d5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f926c7eba24c5024dc94f59308c7a7a2ec2975da\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\1f212c08536c1e0cf29a0854745231b35b9c2e66\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_210c967644366b3e2f0de08b3f94beddfce3115a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\d7ecf779bf2a72aa14f20089aa83af600a61ffd6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_be4b5cf830f987fc5afb2f54fba06cd629289869\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\769bcd0736493ef9c63dabe7c500ff59dfd64c24\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f74fd1c9aa0cea13fbf0759ddc27be3a587ee6b3/classes.dex" />
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f98f8abaabdda19e566b2fcc57181bf93645af03\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/dlpires/.android/build-cache/14d29b43fdb0fb6a6f0156592389fe7f884b248f/output/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\diego.pires.ETECMOGIGUACU0\.android\build-cache\84dcac82dd315f4bfb47511477ff0c5df7a903b1\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="/home/dlpires/Documents/palmphone-n/app/build/intermediates/pre-dexed/debug/classes_e18127bae9acf40a96da606033e61bb5c0db72f5.jar" />
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="C:\Users\diego.pires.ETECMOGIGUACU0\Documents\TCC\palmphone-n\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b51216139e9db966822bb3d27169e33693f7b407\classes.dex" />
     </item>
 
 </items>

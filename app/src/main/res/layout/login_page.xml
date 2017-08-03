@@ -24,7 +24,7 @@
     <!-- Login progress -->
 
     <LinearLayout
-        android:id="@+id/loginLayout"
+        android:id="@+id/buttonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -70,19 +70,17 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/botaoLayout"
-        android:layout_width="383dp"
+        android:id="@+id/loginLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@android:drawable/editbox_background"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="348dp"
-            android:layout_height="32dp"
+            android:layout_height="42dp"
             android:layout_gravity="center"
-            android:background="@color/colorPrimary"
+            android:background="?android:attr/colorEdgeEffect"
             android:onClick="botaoLogin"
             android:text="Login"
             android:textColor="@android:color/white"
