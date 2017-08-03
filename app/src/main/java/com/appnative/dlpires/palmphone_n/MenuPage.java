@@ -9,7 +9,7 @@ import android.view.View;
  * Created by dlpires on 27/07/17.
  */
 
-public class menu_page extends Activity {
+public class MenuPage extends Activity {
     @Override
     protected void onCreate(Bundle b){
         super.onCreate(b);
@@ -17,12 +17,12 @@ public class menu_page extends Activity {
     }
 
     public void pagePerfil(View v){
-        Intent i = new Intent(this, user_page.class);
+        Intent i = new Intent(this, UserPage.class);
         startActivity(i);
     }
 
     public void pageColetor(View v){
-        Intent i = new Intent(this, coletor_page.class);
+        Intent i = new Intent(this, ColetorPage.class);
         startActivity(i);
     }
 }

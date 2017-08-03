@@ -9,7 +9,7 @@ import android.view.View;
  * Created by dlpires on 28/07/17.
  */
 
-public class coletor_page extends Activity {
+public class ColetorPage extends Activity {
     @Override
     protected void onCreate(Bundle b){
         super.onCreate(b);
@@ -17,7 +17,7 @@ public class coletor_page extends Activity {
     }
 
     public void pageColeta(View v){
-        Intent i = new Intent(this, coletadados_page.class);
+        Intent i = new Intent(this, ColetorDadosPage.class);
         startActivity(i);
     }
 }

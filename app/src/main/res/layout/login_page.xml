@@ -83,7 +83,7 @@
             android:layout_height="32dp"
             android:layout_gravity="center"
             android:background="@color/colorPrimary"
-            android:onClick="verificaLogin"
+            android:onClick="botaoLogin"
             android:text="Login"
             android:textColor="@android:color/white"
             android:textSize="14sp"

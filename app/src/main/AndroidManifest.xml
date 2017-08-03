@@ -12,7 +12,7 @@
 
 
         <!--Pagina de Login (Inicial)-->
-        <activity android:name=".login_page">
+        <activity android:name=".LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -21,16 +21,16 @@
 
 
         <!--Menu Principal-->
-        <activity android:name=".menu_page"></activity>
+        <activity android:name=".MenuPage"></activity>
 
         <!--Perfil Usuário-->
-        <activity android:name=".user_page"></activity>
+        <activity android:name=".UserPage"></activity>
 
         <!--Página de Opções: Coletor-->
-        <activity android:name=".coletor_page"></activity>
+        <activity android:name=".ColetorPage"></activity>
 
         <!--Página de Opções: Coleta de Dados-->
-        <activity android:name=".coletadados_page"></activity>
+        <activity android:name=".ColetorDadosPage"></activity>
 
     </application>
 

@@ -4,13 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Created by dlpires on 29/07/17.
+ * Created by dlpires on 28/07/17.
  */
 
-public class coletadados_page extends Activity {
+public class UserPage extends Activity{
+
     @Override
     protected void onCreate(Bundle b){
         super.onCreate(b);
-        setContentView(R.layout.coletadados_page);
+        setContentView(R.layout.user_page);
     }
 }
