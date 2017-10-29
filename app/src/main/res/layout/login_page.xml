@@ -82,7 +82,7 @@
             android:layout_gravity="center"
             android:background="?android:attr/colorEdgeEffect"
             android:onClick="botaoLogin"
-            android:text="Login"
+            android:text="ENTRAR"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="bold" />

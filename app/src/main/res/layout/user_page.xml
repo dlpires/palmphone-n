@@ -14,18 +14,18 @@
         android:background="@android:drawable/editbox_dropdown_light_frame"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="Perfil"
+        app:title="Perfil Usuário"
         app:titleTextColor="@android:color/black" />
 
     <ImageView
         android:id="@+id/imageUser"
-        android:layout_width="141dp"
+        android:layout_width="232dp"
         android:layout_height="88dp"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
-        android:layout_weight="0.24"
-        android:visibility="visible"
-        android:src="@mipmap/ic_launcher_round" />
+        android:layout_weight="0.57"
+        android:src="@mipmap/imgperfil"
+        android:visibility="visible" />
 
     <LinearLayout
         android:layout_width="match_parent"
