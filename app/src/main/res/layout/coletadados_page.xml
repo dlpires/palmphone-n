@@ -16,6 +16,7 @@
         android:layoutMode="clipBounds"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/ic_voltar2"
         app:title="Coleta de Dados"
         app:titleTextColor="@android:color/background_dark" />
 

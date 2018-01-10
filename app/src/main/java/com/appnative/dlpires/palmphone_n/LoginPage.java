@@ -1,10 +1,11 @@
 package com.appnative.dlpires.palmphone_n;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
  * Created by dlpires on 26/07/17.
  */
 
-public class LoginPage extends Activity {
+public class LoginPage extends AppCompatActivity {
 
     //Variaveis de Email e Senha
     private EditText email;
@@ -40,6 +41,9 @@ public class LoginPage extends Activity {
     protected void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.login_page);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarLogin);
+        setSupportActionBar(toolbar);
 
         mAuth = FirebaseAuth.getInstance();
 

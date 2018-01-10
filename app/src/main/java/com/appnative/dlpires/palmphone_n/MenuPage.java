@@ -1,8 +1,9 @@
 package com.appnative.dlpires.palmphone_n;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -11,11 +12,14 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by dlpires on 27/07/17.
  */
 
-public class MenuPage extends Activity {
+public class MenuPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.menu_page);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarHome);
+        setSupportActionBar(toolbar);
     }
 
     public void pagePerfil(View v){
