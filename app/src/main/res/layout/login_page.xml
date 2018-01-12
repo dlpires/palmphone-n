@@ -80,7 +80,7 @@
             android:layout_width="348dp"
             android:layout_height="42dp"
             android:layout_gravity="center"
-            android:background="?android:attr/colorEdgeEffect"
+            android:background="@color/colorPrimary"
             android:onClick="botaoLogin"
             android:text="ENTRAR"
             android:textColor="@android:color/white"
