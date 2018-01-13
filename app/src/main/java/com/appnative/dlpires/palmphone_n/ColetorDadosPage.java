@@ -21,8 +21,9 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class ColetorDadosPage extends AppCompatActivity {
 
-    FloatingActionButton buttonBarcode;
-    EditText ra;
+    private FloatingActionButton buttonBarcode;
+    private EditText ra;
+    private NotificaUser n;
 
     @Override
     protected void onCreate(Bundle b){
@@ -40,6 +41,9 @@ public class ColetorDadosPage extends AppCompatActivity {
 
         //VÁRIAVEL PARA CAIXA DE TEXTO
         ra = (EditText) findViewById(R.id.textRA);
+
+        //PARA AS NOTIFICAÇÕES
+        n = new NotificaUser();
 
         //EVENTO DE INICIALIZAÇÃO DA LEITURA DE CODIGO DE BARRA E CONFIGURAÇÕES
         buttonBarcode.setOnClickListener(new View.OnClickListener() {
@@ -77,19 +81,16 @@ public class ColetorDadosPage extends AppCompatActivity {
         if(result != null){
             if(result.getContents() != null){
                 ra.setText(result.getContents());
-                alert("Captura bem sucedida!");
+                n.alertaSonoro(this);
+                n.alertaToast(getApplicationContext(), "Captura bem sucedida!");
             }
             else {
-                alert("Captura não realizada!");
+                n.alertaToast(getApplicationContext(), "Captura não realizada!");
             }
         }
         else {
             super.onActivityResult(requestCode,resultCode,data);
         }
-    }
-
-    private void alert(String msg){
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
 }
