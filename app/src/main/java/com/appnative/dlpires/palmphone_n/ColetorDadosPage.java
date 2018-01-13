@@ -1,10 +1,19 @@
 package com.appnative.dlpires.palmphone_n;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 
 /**
@@ -12,13 +21,38 @@ import android.view.MenuItem;
  */
 
 public class ColetorDadosPage extends AppCompatActivity {
+
+    FloatingActionButton buttonBarcode;
+    EditText ra;
+
     @Override
     protected void onCreate(Bundle b){
+        //INICIALIZAÇÃO DO LAYOUT
         super.onCreate(b);
         setContentView(R.layout.coletadados_page);
+
+        //INICIALIZANDO TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarColetaDados);
         setSupportActionBar(toolbar);
 
+        //VÁRIAVEIS BARCODE
+        buttonBarcode = (FloatingActionButton) findViewById(R.id.buttonBarcode);
+        final Activity activity = this;
+
+        //VÁRIAVEL PARA CAIXA DE TEXTO
+        ra = (EditText) findViewById(R.id.textRA);
+
+        //EVENTO DE INICIALIZAÇÃO DA LEITURA DE CODIGO DE BARRA E CONFIGURAÇÕES
+        buttonBarcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator integrator = new IntentIntegrator(activity);
+                integrator.setBeepEnabled(true);//HABILITANDO SOM AO SCANEAR CODIGO
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES); //INSERINDO TIPO DE LEITURA
+                integrator.setCameraId(0); //USAR APENAS A CAMERA TRASEIRA DO DISPOSITIVO.
+                integrator.initiateScan();
+            }
+        });
     }
 
     //método para botão voltar da aplicação
@@ -36,6 +70,28 @@ public class ColetorDadosPage extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if(result != null){
+            if(result.getContents() != null){
+                ra.setText(result.getContents());
+                alert("Captura bem sucedida!");
+            }
+            else {
+                alert("Erro de Leitura!");
+            }
+        }
+        else {
+            super.onActivityResult(requestCode,resultCode,data);
+        }
+    }
+
+    private void alert(String msg){
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
     }
 
 }
