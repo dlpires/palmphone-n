@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -47,7 +46,6 @@ public class ColetorDadosPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(activity);
-                integrator.setBeepEnabled(true);//HABILITANDO SOM AO SCANEAR CODIGO
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES); //INSERINDO TIPO DE LEITURA
                 integrator.setCameraId(0); //USAR APENAS A CAMERA TRASEIRA DO DISPOSITIVO.
                 integrator.initiateScan();
@@ -82,7 +80,7 @@ public class ColetorDadosPage extends AppCompatActivity {
                 alert("Captura bem sucedida!");
             }
             else {
-                alert("Erro de Leitura!");
+                alert("Captura não realizada!");
             }
         }
         else {
@@ -91,7 +89,7 @@ public class ColetorDadosPage extends AppCompatActivity {
     }
 
     private void alert(String msg){
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
 }
