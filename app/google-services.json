@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "277986045414",
-    "firebase_url": "https://palmphonenativo.firebaseio.com",
-    "project_id": "palmphonenativo",
-    "storage_bucket": "palmphonenativo.appspot.com"
+    "project_number": "1067699841656",
+    "firebase_url": "https://palmphone-v1.firebaseio.com",
+    "project_id": "palmphone-v1",
+    "storage_bucket": "palmphone-v1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:277986045414:android:4932193d9efdc462",
+        "mobilesdk_app_id": "1:1067699841656:android:4932193d9efdc462",
         "android_client_info": {
           "package_name": "com.appnative.dlpires.palmphone_n"
         }
       },
       "oauth_client": [
         {
-          "client_id": "277986045414-q0mqtrhcl3qhck1e29l2m4sog4eangu2.apps.googleusercontent.com",
+          "client_id": "1067699841656-ao1jd14873lp76f6bvu2ln80t44cpduf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.appnative.dlpires.palmphone_n",
-            "certificate_hash": "d6c2fbf6b1a2a8bfb07185d15a020ed646c9fe4b"
+            "certificate_hash": "6d08e5391ebe3294994f2b8db8ac30831da08672"
           }
         },
         {
-          "client_id": "277986045414-7mfvvcute3tn9seo6iujgs4hhoc6op1m.apps.googleusercontent.com",
+          "client_id": "1067699841656-s0piftasblea02e0p7p2njgrklaob3qv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBrOXvPUiOHSWjdWRd4gzCB2k_-ddnrj8k"
+          "current_key": "AIzaSyCBy4Cd1Zo3jvaBME9qSwAg-wZ6QM8wbv0"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "277986045414-7mfvvcute3tn9seo6iujgs4hhoc6op1m.apps.googleusercontent.com",
+              "client_id": "1067699841656-s0piftasblea02e0p7p2njgrklaob3qv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
