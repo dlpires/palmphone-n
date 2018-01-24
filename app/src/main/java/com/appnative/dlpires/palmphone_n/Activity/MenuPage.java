@@ -2,14 +2,12 @@ package com.appnative.dlpires.palmphone_n.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.appnative.dlpires.palmphone_n.DAO.DAO;
+import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
 import com.appnative.dlpires.palmphone_n.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
@@ -28,7 +26,7 @@ public class MenuPage extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarHome);
         setSupportActionBar(toolbar);
 
-        auth = DAO.getFirebaseAuth();
+        auth = ConnectFirebase.getFirebaseAuth();
     }
 
     public void pagePerfil(View v){

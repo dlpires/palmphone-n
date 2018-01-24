@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.appnative.dlpires.palmphone_n.Classes.Professor;
-import com.appnative.dlpires.palmphone_n.DAO.DAO;
+import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
 import com.appnative.dlpires.palmphone_n.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -84,7 +84,7 @@ public class LoginPage extends AppCompatActivity {
 
         showProgressDialog();
 
-        auth = DAO.getFirebaseAuth();
+        auth = ConnectFirebase.getFirebaseAuth();
         auth.signInWithEmailAndPassword(professor.getEmailProf(), professor.getSenhaProf()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -94,6 +94,7 @@ public class LoginPage extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(LoginPage.this, "Falha no Login: Usuario ou Senha Incorreta!", Toast.LENGTH_SHORT).show();
+                    hideProgressDialog();
                 }
             }
         });
@@ -105,7 +106,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public Boolean usuarioLogado(){
-        FirebaseUser user = DAO.getFirebaseAuth().getCurrentUser();
+        FirebaseUser user = ConnectFirebase.getFirebaseAuth().getCurrentUser();
 
         if (user != null) return true;
         else return false;
