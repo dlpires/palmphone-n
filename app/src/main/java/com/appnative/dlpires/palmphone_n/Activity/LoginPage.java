@@ -1,6 +1,5 @@
 package com.appnative.dlpires.palmphone_n.Activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,8 +9,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
 import com.appnative.dlpires.palmphone_n.Classes.Professor;
 import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
 import com.appnative.dlpires.palmphone_n.R;
@@ -26,85 +25,99 @@ import com.google.firebase.auth.FirebaseUser;
  * Created by dlpires on 26/07/17.
  */
 
+//CLASSE JAVA PARA A TELA DE LOGIN DO APP
+
 public class LoginPage extends AppCompatActivity {
 
-    //Variaveis de Email e Senha
+    //CAIXAS DE TEXTO DO LAYOUT
     private EditText email;
     private EditText senha;
 
-    //Instancia de Objetos
+    //REFERENCIA PARA AS INSTANCIAS DE OBJETOS
     private Professor professor;
 
-    /*Variavel do Firebase*/
+    //VARIAVEIS PARA O FIREBASE
     private FirebaseAuth auth;
 
-    //Popup de Loading
-    private ProgressDialog mProgressDialog;
-
-
+    //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override
     protected void onCreate(Bundle b){
+        //INICIANDO A TELA
         super.onCreate(b);
         setContentView(R.layout.login_page);
 
+
+        //INICIANDO TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarLogin);
         setSupportActionBar(toolbar);
 
-        //VERIFICA SE USUÁRIO JÁ ESTA LOGADO NO APP
+        //VERIFICA SE USUÁRIO JÁ ESTA LOGADO NO APP, ONDE SE VERDADEIRO, ENTRA NA PAGINA DE MENU DIRETAMENTE, E CASO CONTRARIO ELE INSTANCIA
+        //OS EDITTEXT DE LOGIN E SENHA
         if (usuarioLogado()){
             Intent intent = new Intent(LoginPage.this, MenuPage.class);
             startActivity(intent);
         }
         else{
-            //Resgatando Caixa de Texto
+            //INSTANCIANDO OS OBJETOS COMPONENTES DA CAIXA DE TEXTO
             email = (EditText) findViewById(R.id.textEmail);
             senha = (EditText) findViewById(R.id.textSenha);
 
         }
     }
 
-    //Evento ao botão de Login ser clicado
+    //EVENTO ONCLICK DO BOTÃO LOGIN
     public void botaoLogin(View v) {
-        //Instanciando e Inserindo valores no Objeto
+        //INSTANCIANDO E INSERINDO OS VALORES NO OBJETO.
         professor = new Professor();
         professor.setEmailProf(email.getText().toString());
         professor.setSenhaProf(senha.getText().toString());
 
+        //CHAMADA DO MÉTODO DA CLASSE
         verificaLogin();
     }
 
-    /*Método de Verificação de Login*/
+    //MÉTODO QUE FAZ A AUTENTICAÇÃO DO LOGIN DO USUÁRIO
     public void verificaLogin(){
 
-        //Autenticação de Login (Email e Senha) no Firebase
+        //SALVANDO LOG DE LOGIN
         Log.d("AUTH", "signIn:" + email);
+
+        //VERIFICANDO SE AS INFORMAÇÕES CONTIDAS NAS CAIXAS DE TEXTO SÃO VALIDAS
         if (!validateForm()) {
+            //RETORNANDO NA TELA DE LOGIN CASO O FORM ESTEJA INCONSISTENTE
             return;
         }
 
-        showProgressDialog();
+        //MOSTRANDO BARRA DE PROGRESSO (LOADING)
+        NotificaUser.showProgressDialog(LoginPage.this);
 
+        //PUXANDO INSTANCIA UNICA DE AUTENTICAÇÃO DO FIREBASE
         auth = ConnectFirebase.getFirebaseAuth();
+        //CHAMANDO MÉTODO DE AUTENTICAÇÃO DO FIREBASE, PASSANDO AS INFORMAÇÕES CONTIDAS NO OBJETO
         auth.signInWithEmailAndPassword(professor.getEmailProf(), professor.getSenhaProf()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                //CASO A REQUISIÇÃO FOR VALIDADA, MOSTRAR TELA PRINCIPAL
                 if(task.isSuccessful()){
                     abrirTelaPrincipal();
-                    hideProgressDialog();
                 }
+                //CASO CONTRARIO, MOSTRA MENSAGEM AO USUÁRIO
                 else{
-                    Toast.makeText(LoginPage.this, "Falha no Login: Usuario ou Senha Incorreta!", Toast.LENGTH_SHORT).show();
-                    hideProgressDialog();
+                    NotificaUser.alertaToast(LoginPage.this, "Falha no Login: Usuario ou Senha Incorreta!");
                 }
+                //FECHANDO BARRA DE PROGRESSO (LOADING)
+                NotificaUser.hideProgressDialog();
             }
         });
     }
 
+    //MÉTODO PARA ABRIR TELA PRINCIPAL
     private void abrirTelaPrincipal(){
         Intent intent = new Intent(LoginPage.this, MenuPage.class);
         startActivity(intent);
     }
 
+    //MÉTODO PARA VERIFICAR SE USUÁRIO JA ESTÁ LOGADO
     public Boolean usuarioLogado(){
         FirebaseUser user = ConnectFirebase.getFirebaseAuth().getCurrentUser();
 
@@ -112,9 +125,11 @@ public class LoginPage extends AppCompatActivity {
         else return false;
     }
 
+    //MÉTODO DE VALIDAÇÃO DO FORM DE LOGIN
     private boolean validateForm() {
         boolean valid = true;
 
+        //VERIFICANDO SE AS CAIXAS DE TEXTO ESTÃO EM BRANCO OU NÃO, DE FORMA A INFORMAR AO USUÁRIO QUE INSIRA AS INFORMAÇÕES
         String userEmail = email.getText().toString();
         if (TextUtils.isEmpty(userEmail)) {
             email.setError("Required");
@@ -132,21 +147,5 @@ public class LoginPage extends AppCompatActivity {
         }
 
         return valid;
-    }
-
-    public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage("Loading");
-            mProgressDialog.setIndeterminate(true);
-        }
-
-        mProgressDialog.show();
-    }
-
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
     }
 }

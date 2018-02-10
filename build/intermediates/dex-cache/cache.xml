@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\dlpires\.android\build-cache\61aac112c9a0110af4ffa12f21362ec6d1092be8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.0"
+        sha1="ba4defc8cb4ed5b90b8ef71602722cdeebe507cd">
+        <dex dex="D:\Documentos\TCC\palmphone-n\app\build\intermediates\pre-dexed\debug\classes_d7944aff6ebf330dbffd296c97078c55238592fa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dlpires\.android\build-cache\17471409ce28c1aa35547e2c4563f12fd8e81536\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.0"
+        sha1="3dbaff65d26258306561d545f88d6712ac41dd46">
+        <dex dex="D:\Documentos\TCC\palmphone-n\app\build\intermediates\pre-dexed\debug\classes_fd393da3f6ed3104503c6bd41eaec2bf7896f2f2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\dlpires\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.0"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="D:\Documentos\TCC\palmphone-n\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_f524316c5e3bc44df2a62558b298cd749df2ab28.jar" />
+    </item>
+
+</items>

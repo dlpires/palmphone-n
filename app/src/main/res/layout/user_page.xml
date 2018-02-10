@@ -20,14 +20,14 @@
 
     <ImageView
         android:id="@+id/imageUser"
-        android:layout_width="232dp"
-        android:layout_height="88dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
         android:layout_weight="0.57"
-        android:src="@mipmap/imgperfil"
         android:visibility="visible" />
 
+    <!--android:src="@mipmap/imgperfil"-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,9 +43,9 @@
             android:editable="false"
             android:ems="10"
             android:enabled="false"
-            android:hint="Josivaldo da Silva"
             android:inputType="textPersonName"
-            android:textColorHint="@android:color/black" />
+            android:textColor="@android:color/black"/>
+            <!--android:hint="Josivaldo da Silva"-->
 
         <EditText
             android:id="@+id/dtNasc"
@@ -56,12 +56,12 @@
             android:editable="false"
             android:ems="10"
             android:enabled="false"
-            android:hint="10/08/1980"
             android:inputType="textPersonName"
-            android:textColorHint="@android:color/black" />
+            android:textColor="@android:color/black" />
+        <!--android:hint="10/08/1980"-->
 
         <EditText
-            android:id="@+id/cpf"
+            android:id="@+id/rg"
             android:layout_width="348dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -69,9 +69,9 @@
             android:editable="false"
             android:ems="10"
             android:enabled="false"
-            android:hint="078.671.876-X"
             android:inputType="textPersonName"
-            android:textColorHint="@android:color/black" />
+            android:textColor="@android:color/black" />
+        <!--android:hint="078.671.876-X"-->
     </LinearLayout>
 
 </LinearLayout>

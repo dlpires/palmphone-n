@@ -24,7 +24,6 @@ public class ColetorDadosPage extends AppCompatActivity {
 
     private FloatingActionButton buttonBarcode;
     private EditText ra;
-    private NotificaUser n;
 
     @Override
     protected void onCreate(Bundle b){
@@ -42,9 +41,6 @@ public class ColetorDadosPage extends AppCompatActivity {
 
         //VÁRIAVEL PARA CAIXA DE TEXTO
         ra = (EditText) findViewById(R.id.textRA);
-
-        //PARA AS NOTIFICAÇÕES
-        n = new NotificaUser();
 
         //EVENTO DE INICIALIZAÇÃO DA LEITURA DE CODIGO DE BARRA E CONFIGURAÇÕES
         buttonBarcode.setOnClickListener(new View.OnClickListener() {
@@ -82,11 +78,11 @@ public class ColetorDadosPage extends AppCompatActivity {
         if(result != null){
             if(result.getContents() != null){
                 ra.setText(result.getContents());
-                n.alertaSonoro(this);
-                n.alertaToast(getApplicationContext(), "Captura bem sucedida!");
+                NotificaUser.alertaSonoro(this);
+                NotificaUser.alertaToast(getApplicationContext(), "Captura bem sucedida!");
             }
             else {
-                n.alertaToast(getApplicationContext(), "Captura não realizada!");
+                NotificaUser.alertaToast(getApplicationContext(), "Captura não realizada!");
             }
         }
         else {
