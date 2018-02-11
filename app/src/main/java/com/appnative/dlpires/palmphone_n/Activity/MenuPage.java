@@ -15,31 +15,40 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by dlpires on 27/07/17.
  */
 
+
+//CLASSE JAVA PARA A TELA PRINCIPAL DO APP
 public class MenuPage extends AppCompatActivity {
 
+    //ATRIBUTOS PARA O FIREBASE
     private FirebaseAuth auth;
 
+    //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override
     protected void onCreate(Bundle b){
+        //INICIANDO A TELA
         super.onCreate(b);
         setContentView(R.layout.menu_page);
 
+        //INICIANDO TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarHome);
         setSupportActionBar(toolbar);
-
+        //PUXANDO INSTANCIA UNICA DE AUTENTICAÇÃO DO FIREBASE
         auth = ConnectFirebase.getFirebaseAuth();
     }
 
+    //MÉTODO BOTÃO DE PERFIL
     public void pagePerfil(View v){
         Intent i = new Intent(this, UserPage.class);
         startActivity(i);
     }
 
+    //MÉTODO BOTÃO PARA PAGINA DO COLETOR
     public void pageColetor(View v){
         Intent i = new Intent(this, ColetorPage.class);
         startActivity(i);
     }
 
+    //MÉTODO ACIONADO NO BOTÃO DE LOGOUT
     public void botaoLogout(View v){
         //Saindo do Sistema
         auth.signOut();

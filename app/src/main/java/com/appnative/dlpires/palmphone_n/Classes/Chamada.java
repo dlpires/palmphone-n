@@ -7,13 +7,15 @@ import java.util.Date;
 /**
  * Created by root on 14/01/18.
  */
-
+//CLASSE CHAMADA
 public class Chamada {
+    //ATRIBUTOS
     private int numAulaChamada;
     private Date dtChamada;
     private Time hrChamada;
     private ArrayList <Aluno> alunos;
 
+    //GETTERS E SETTERS
     public int getNumAulaChamada() {
         return numAulaChamada;
     }

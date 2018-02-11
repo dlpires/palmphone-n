@@ -6,13 +6,16 @@ import java.util.ArrayList;
  * Created by root on 14/01/18.
  */
 
+//CLASSE DISCIPLINA
 public class Disciplina {
+    //ATRIBUTOS
     private int codDisc;
     private String nomeDisc;
     private String siglaDisc;
     private ArrayList <Aluno> alunos;
     private ArrayList <Chamada> chamadas;
 
+    //GETTERS E SETTERS
     public int getCodDisc() {
         return codDisc;
     }

@@ -7,7 +7,9 @@ import java.util.Date;
  * Created by root on 14/01/18.
  */
 
+//CLASSE PROFESSOR
 public class Professor {
+    //ATRIBUTOS
     private int codProf;
     private String nomeProf;
     private String emailProf;
@@ -16,6 +18,7 @@ public class Professor {
     private Date dataNascProf;
     private ArrayList <Disciplina> disciplinas;
 
+    //GETTERS E SETTERS
     public int getCodProf() {
         return codProf;
     }

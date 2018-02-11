@@ -36,7 +36,7 @@ public class LoginPage extends AppCompatActivity {
     //REFERENCIA PARA AS INSTANCIAS DE OBJETOS
     private Professor professor;
 
-    //VARIAVEIS PARA O FIREBASE
+    //ATRIBUTOS PARA O FIREBASE
     private FirebaseAuth auth;
 
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
@@ -45,7 +45,6 @@ public class LoginPage extends AppCompatActivity {
         //INICIANDO A TELA
         super.onCreate(b);
         setContentView(R.layout.login_page);
-
 
         //INICIANDO TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarLogin);
