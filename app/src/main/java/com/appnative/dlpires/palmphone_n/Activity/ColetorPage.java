@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.appnative.dlpires.palmphone_n.R;
 
@@ -15,6 +17,12 @@ import com.appnative.dlpires.palmphone_n.R;
 
 //CLASSE JAVA PARA A TELA DE CONFIGURAÇÕES DE CHAMADA DO USUÁRIO DO APP
 public class ColetorPage extends AppCompatActivity {
+
+    //ATRIBUTOS COMPONENTES
+    private EditText nomeUser;
+    private Spinner spinnerAula;
+    private Spinner spinnerSala;
+    private Spinner spinnerDisciplinas;
 
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override

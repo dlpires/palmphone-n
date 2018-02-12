@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
+import com.appnative.dlpires.palmphone_n.Classes.Professor;
 import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
+import com.appnative.dlpires.palmphone_n.DAO.CrudFirebase;
 import com.appnative.dlpires.palmphone_n.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,6 +46,9 @@ public class UserPage extends AppCompatActivity{
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
 
+    //REFERENCIA DO CRUD FIREBASE
+    private CrudFirebase crud;
+
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override
     protected void onCreate(Bundle b){
@@ -67,6 +72,10 @@ public class UserPage extends AppCompatActivity{
 
         //MOSTRANDO BARRA DE PROGRESSO (LOADING)
         NotificaUser.showProgressDialog(UserPage.this);
+
+        //INICIALIZANDO OBJETO CRUD
+        crud = new CrudFirebase();
+
         //MÉTODOS CHAMADOS
         carregaInfoUser();
         carregaImagem();
@@ -74,20 +83,20 @@ public class UserPage extends AppCompatActivity{
 
 
     //MÉTODO QUE CHAMA AS INFORMAÇÕES DO USUÁRIO
-    private void carregaInfoUser(){
+    public void carregaInfoUser(){
 
         //PEGANDO EMAIL DO USUARIO LOGADO
         String userLogado = auth.getCurrentUser().getEmail().toString();
 
+        //INSTANCIANDO VALORES
         //COMPARANDO COM OS EMAILS CADASTRADOS NO DB
-        databaseReference.child("professor").orderByChild("emailProf").equalTo(userLogado).addValueEventListener(new ValueEventListener() {
+        ValueEventListener value = new ValueEventListener() {
+
             //MÉTODO SOBRESCRITO QUE RESGATA OS DADOS ENCONTRADOS
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //VERIFICA TODOS OS NÓS FILHOS E PUXA OS VALORES REQUERIDOS
-                //NO CASO, COMO SE PROCURA APENAS UM USUÁRIO, O LOOP SÓ É ACIONADO UMA UNICA VEZ
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    //RESGATANDO OS VALORES ENCONTRAD0S NO DB E COLOCANDO NOS EDIT TEXT
+                //PEGANDO INFORMAÇÕES DO JSON E INSERINDO NAS CAIXAS DE TEXTO
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                     nome.setText((String) postSnapshot.child("nomeProf").getValue());
                     rg.setText((String) postSnapshot.child("rgProf").getValue());
                     dtNasc.setText((String) postSnapshot.child("dataNascProf").getValue());
@@ -99,36 +108,20 @@ public class UserPage extends AppCompatActivity{
             public void onCancelled (DatabaseError databaseError) {
                 //VERIFICA SE USUÁRIO ESTA LOGADO, PARA MOSTRAR A MENSAGEM DE ERRO APENAS QUANDO O USUÁRIO ESTA LOGADO MAS A CONEXÃO
                 //COM O BANCO FOI PERDIDA
-                if(usuarioLogado())
+                if(crud.usuarioLogado())
                     NotificaUser.alertaToast(UserPage.this, databaseError.toString());
             }
-        });
+        };
+        databaseReference.child("professor").orderByChild("emailProf").equalTo(userLogado).addListenerForSingleValueEvent(value);
     }
 
     //MÉTODO PARA BUSCAR E MOSTRAR IMAGEM DO PERFIL DO USUÁRIO
     private void carregaImagem(){
-        //BUSCANDO AS REFERENCIAS DO STORAGE DO FIREBASE
-        storageReference = FirebaseStorage.getInstance().getReference();
-        //PEGANDO REFERENCIA DO ARQUIVO QUE SERÁ MOSTRADO, ONDE O NOME DESTE SE BASEIA NO UID DO USUÁRIO QUE FOI CADASTRADO
-        StorageReference montarImagemReferencia = storageReference.child("fotoPerfilProfessor/" + auth.getCurrentUser().getUid() + ".jpg");
+        //MÉTODO DO CRUD PARA CARREGAR IMAGEM DE PERFIL DO USUÁRIO ARMAZENADO NO FIREBASE
+        crud.carregaImagemPerfilUser(imageView, UserPage.this);
 
-        //EXECUTANDO MÉTODO DE REFERENCIA PARA BUSCAR OS DADOS NO FIREBASE
-        montarImagemReferencia.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            //MÉTODO QUE EXECUTA A AÇÃO DE QUANDO FOI BEM SUCEDIDA A BUSCA, QUE NO CASO ELE UTILIZADO DA BIBLIOTECA DO PICASSO
-            //PARA INSERIR NO IMAGEVIEW A IMAGEM RESGATADA
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.with(UserPage.this).load(uri.toString()).resize(200, 200).centerCrop().into(imageView);
-                //FECHANDO BARRA DE PROGRESSO (LOADING)
-                NotificaUser.hideProgressDialog();
-            }
-            //NO CASO DE FALHA NA CONEXÃO, ELE NOTIFICA AO USUÁRIO DO ERRO ATRAVÉS DE UM TOAST
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                NotificaUser.alertaToast(UserPage.this, "Falha ao carregar a imagem de perfil!");
-            }
-        });
+        //FECHANDO BARRA DE PROGRESSO (LOADING)
+        NotificaUser.hideProgressDialog();
     }
 
     //MÉTODO QUE ACIONA O BOTÃO VOLTAR DA TOOLBAR
@@ -148,13 +141,5 @@ public class UserPage extends AppCompatActivity{
         }
 
         return true;
-    }
-
-    //MÉTODO PARA VERIFICAR SE USUÁRIO JA ESTÁ LOGADO
-    public Boolean usuarioLogado(){
-        FirebaseUser user = ConnectFirebase.getFirebaseAuth().getCurrentUser();
-
-        if (user != null) return true;
-        else return false;
     }
 }

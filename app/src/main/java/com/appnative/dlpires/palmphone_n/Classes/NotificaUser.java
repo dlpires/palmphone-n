@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.appnative.dlpires.palmphone_n.R;
@@ -30,20 +31,23 @@ public class NotificaUser {
 
     //MÉTODO PARA INICIAR A BARRA DE PROGRESSO
     public static void showProgressDialog(Context context) {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(context);
-            mProgressDialog.setMessage("Loading");
-            mProgressDialog.setIndeterminate(true);
-        }
-
+        mProgressDialog = null;
+        mProgressDialog = new ProgressDialog(context);
+        mProgressDialog.setMessage("Loading");
+        mProgressDialog.setIndeterminate(true);
         mProgressDialog.show();
     }
 
     //MÉTODO PARA PARAR A BARRA DE PROGRESSO
     public static void hideProgressDialog() {
+        Handler handler = new Handler();
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-            mProgressDialog = null;
+            //COLOCANDO DELAY DE 3000 MILISEGUNDOS NA BARRA DE PROGRESSO
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    mProgressDialog.dismiss();
+                }
+            }, 3000);
         }
     }
 }

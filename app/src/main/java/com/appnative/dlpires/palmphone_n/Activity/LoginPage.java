@@ -13,6 +13,7 @@ import android.widget.EditText;
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
 import com.appnative.dlpires.palmphone_n.Classes.Professor;
 import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
+import com.appnative.dlpires.palmphone_n.DAO.CrudFirebase;
 import com.appnative.dlpires.palmphone_n.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,6 +40,9 @@ public class LoginPage extends AppCompatActivity {
     //ATRIBUTOS PARA O FIREBASE
     private FirebaseAuth auth;
 
+    //REFERENCIA CRUD
+    private CrudFirebase crud;
+
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override
     protected void onCreate(Bundle b){
@@ -46,13 +50,16 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(b);
         setContentView(R.layout.login_page);
 
+        //INCIACIALIZANDO CRUD
+        crud = new CrudFirebase();
+
         //INICIANDO TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarLogin);
         setSupportActionBar(toolbar);
 
         //VERIFICA SE USUÁRIO JÁ ESTA LOGADO NO APP, ONDE SE VERDADEIRO, ENTRA NA PAGINA DE MENU DIRETAMENTE, E CASO CONTRARIO ELE INSTANCIA
         //OS EDITTEXT DE LOGIN E SENHA
-        if (usuarioLogado()){
+        if (crud.usuarioLogado()){
             Intent intent = new Intent(LoginPage.this, MenuPage.class);
             startActivity(intent);
         }
@@ -114,14 +121,6 @@ public class LoginPage extends AppCompatActivity {
     private void abrirTelaPrincipal(){
         Intent intent = new Intent(LoginPage.this, MenuPage.class);
         startActivity(intent);
-    }
-
-    //MÉTODO PARA VERIFICAR SE USUÁRIO JA ESTÁ LOGADO
-    public Boolean usuarioLogado(){
-        FirebaseUser user = ConnectFirebase.getFirebaseAuth().getCurrentUser();
-
-        if (user != null) return true;
-        else return false;
     }
 
     //MÉTODO DE VALIDAÇÃO DO FORM DE LOGIN

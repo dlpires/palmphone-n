@@ -15,8 +15,23 @@ public class Professor {
     private String emailProf;
     private String senhaProf;
     private String rgProf;
-    private Date dataNascProf;
+    private String dataNascProf;
     private ArrayList <Disciplina> disciplinas;
+
+    //CONSTRUTORES
+    public Professor(){
+
+    }
+
+    public Professor(int codProf, String nomeProf, String emailProf, String senhaProf, String rgProf, String dataNascProf, ArrayList<Disciplina> disciplinas) {
+        this.codProf = codProf;
+        this.nomeProf = nomeProf;
+        this.emailProf = emailProf;
+        this.senhaProf = senhaProf;
+        this.rgProf = rgProf;
+        this.dataNascProf = dataNascProf;
+        this.disciplinas = disciplinas;
+    }
 
     //GETTERS E SETTERS
     public int getCodProf() {
@@ -59,11 +74,11 @@ public class Professor {
         this.rgProf = rgProf;
     }
 
-    public Date getDataNascProf() {
+    public String getDataNascProf() {
         return dataNascProf;
     }
 
-    public void setDataNascProf(Date dataNascProf) {
+    public void setDataNascProf(String dataNascProf) {
         this.dataNascProf = dataNascProf;
     }
 
