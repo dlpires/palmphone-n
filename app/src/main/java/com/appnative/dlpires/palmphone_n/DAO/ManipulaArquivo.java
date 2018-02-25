@@ -82,12 +82,15 @@ public class ManipulaArquivo {
 
     //MÉTODO PARA VERIFICAR SE EXISTE ARQUIVOS SALVOS
     public boolean existeArquivo(Context context, String emailUser){
+
         //BUSCANDO ARQUIVO
         File root = new File(context.getFilesDir(),emailUser);
 
-        if(root.listFiles().length == 0){
+        if(!root.exists()) //VERIFICANDO SE A PASTA EXISTE
             return false;
-        }
+
+        if(root.listFiles().length <= 1) //VERIFICANDO SE EXISTE ARQUIVOS DE CHAMADA NA PASTA
+            return false;
 
         return true;
     }
