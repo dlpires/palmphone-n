@@ -1,8 +1,6 @@
 package com.appnative.dlpires.palmphone_n.Classes;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by root on 14/01/18.
@@ -11,8 +9,8 @@ import java.util.Date;
 public class Chamada {
     //ATRIBUTOS
     private int numAulaChamada;
-    private Date dtChamada;
-    private Time hrChamada;
+    private String dtChamada;
+    private String hrChamada;
     private ArrayList <Aluno> alunos;
 
     //GETTERS E SETTERS
@@ -24,19 +22,19 @@ public class Chamada {
         this.numAulaChamada = numAulaChamada;
     }
 
-    public Date getDtChamada() {
+    public String getDtChamada() {
         return dtChamada;
     }
 
-    public void setDtChamada(Date dtChamada) {
+    public void setDtChamada(String dtChamada) {
         this.dtChamada = dtChamada;
     }
 
-    public Time getHrChamada() {
+    public String getHrChamada() {
         return hrChamada;
     }
 
-    public void setHrChamada(Time hrChamada) {
+    public void setHrChamada(String hrChamada) {
         this.hrChamada = hrChamada;
     }
 

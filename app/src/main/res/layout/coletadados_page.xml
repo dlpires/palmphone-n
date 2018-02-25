@@ -16,7 +16,6 @@
         android:layoutMode="clipBounds"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:navigationIcon="@drawable/ic_voltar2"
         app:title="Coleta de Dados"
         app:titleTextColor="@android:color/background_dark" />
 
@@ -47,16 +46,45 @@
                 android:textSize="16sp" />
         </android.support.design.widget.TextInputLayout>
 
-        <ImageButton
+        <Button
             android:id="@+id/buttonRA"
             android:layout_width="348dp"
             android:layout_height="42dp"
             android:layout_gravity="center"
+            android:text="SALVAR"
             android:background="@color/colorPrimary"
-            android:onClick="verificaLogin"
-            android:src="@android:drawable/checkbox_on_background"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/buttonFinalizar"
+            android:layout_width="348dp"
+            android:layout_height="42dp"
+            android:layout_alignEnd="@+id/buttonBarcode"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_weight="0.04"
+            android:background="@color/Sync"
+            android:text="FINALIZAR CHAMADA"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/buttonCancelar"
+            android:layout_width="348dp"
+            android:layout_height="42dp"
+            android:layout_alignEnd="@+id/buttonBarcode"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_weight="0.04"
+            android:background="@android:color/holo_red_dark"
+            android:text="CANCELAR"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
     </LinearLayout>

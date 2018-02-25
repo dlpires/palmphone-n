@@ -8,15 +8,14 @@ package com.appnative.dlpires.palmphone_n.Classes;
 public class Aluno {
 
     //ATRIBUTOS
-    private int raAluno;
-
+    private int ra;
 
     //GETTERS E SETTERS
     public int getRaAluno() {
-        return raAluno;
+        return ra;
     }
 
-    public void setRaAluno(int raAluno) {
-        this.raAluno = raAluno;
+    public void setRaAluno(int ra) {
+        this.ra = ra;
     }
 }

@@ -69,7 +69,8 @@
             android:layout_height="42dp"
             android:layout_gravity="center"
             android:background="@color/Sync"
-            android:text="Sincronizar dados"
+            android:text="Sincronizar"
+            android:onClick="sincronizarFirebase"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:textStyle="bold" />

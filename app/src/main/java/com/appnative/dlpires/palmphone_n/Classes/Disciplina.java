@@ -1,5 +1,7 @@
 package com.appnative.dlpires.palmphone_n.Classes;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
 
 /**
@@ -9,9 +11,9 @@ import java.util.ArrayList;
 //CLASSE DISCIPLINA
 public class Disciplina {
     //ATRIBUTOS
+    @Exclude
     private int codDisc;
-    private String nomeDisc;
-    private String siglaDisc;
+    private String dscDisc;
     private ArrayList <Aluno> alunos;
     private ArrayList <Chamada> chamadas;
 
@@ -24,20 +26,12 @@ public class Disciplina {
         this.codDisc = codDisc;
     }
 
-    public String getNomeDisc() {
-        return nomeDisc;
+    public String getDscDisc() {
+        return dscDisc;
     }
 
-    public void setNomeDisc(String nomeDisc) {
-        this.nomeDisc = nomeDisc;
-    }
-
-    public String getSiglaDisc() {
-        return siglaDisc;
-    }
-
-    public void setSiglaDisc(String siglaDisc) {
-        this.siglaDisc = siglaDisc;
+    public void setNomeDisc(String dscDisc) {
+        this.dscDisc = dscDisc;
     }
 
     public ArrayList<Aluno> getAlunos() {

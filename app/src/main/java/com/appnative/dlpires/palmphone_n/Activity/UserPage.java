@@ -90,7 +90,7 @@ public class UserPage extends AppCompatActivity{
 
         //INSTANCIANDO VALORES
         //COMPARANDO COM OS EMAILS CADASTRADOS NO DB
-        ValueEventListener value = new ValueEventListener() {
+        databaseReference.child("professor").orderByChild("emailProf").equalTo(userLogado).addListenerForSingleValueEvent(new ValueEventListener() {
 
             //MÉTODO SOBRESCRITO QUE RESGATA OS DADOS ENCONTRADOS
             @Override
@@ -111,8 +111,7 @@ public class UserPage extends AppCompatActivity{
                 if(crud.usuarioLogado())
                     NotificaUser.alertaToast(UserPage.this, databaseError.toString());
             }
-        };
-        databaseReference.child("professor").orderByChild("emailProf").equalTo(userLogado).addListenerForSingleValueEvent(value);
+        });
     }
 
     //MÉTODO PARA BUSCAR E MOSTRAR IMAGEM DO PERFIL DO USUÁRIO

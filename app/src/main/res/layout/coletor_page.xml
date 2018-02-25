@@ -21,7 +21,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="172dp"
+        android:layout_height="156dp"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -34,17 +34,9 @@
             android:elevation="0dp"
             android:ems="10"
             android:enabled="false"
-            android:hint="Josivaldo da Silva"
             android:inputType="textPersonName"
-            android:textColorHint="@android:color/black" />
-
-        <Spinner
-            android:id="@+id/spinnerSala"
-            android:layout_width="348dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="0.21" />
+            android:textColor="@android:color/black" />
+        <!--android:hint="Josivaldo da Silva"-->
 
         <Spinner
             android:id="@+id/spinnerDisciplina"
@@ -52,7 +44,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:layout_weight="0.21" />
+            android:layout_weight="0.21"
+            android:spinnerMode="dialog"
+            android:textColor="@android:color/black" />
 
         <Spinner
             android:id="@+id/spinnerAula"
@@ -61,15 +55,16 @@
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:layout_weight="0.21"
-            android:entries="@array/spinner_aulas"
-            android:spinnerMode="dialog" />
+            android:spinnerMode="dialog"
+            android:textColor="@android:color/black" />
+        <!--android:entries="@array/spinner_aulas"-->
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/formMenu"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="64dp"
         android:layout_marginBottom="15dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -84,18 +79,6 @@
             android:background="@color/colorPrimary"
             android:onClick="pageColeta"
             android:text="Coletar dados"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/buttonFinalizar"
-            android:layout_width="348dp"
-            android:layout_height="42dp"
-            android:layout_gravity="center"
-            android:layout_weight="0.04"
-            android:background="@color/colorPrimary"
-            android:text="Finalizar"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:textStyle="bold" />

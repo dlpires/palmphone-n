@@ -1,7 +1,6 @@
 package com.appnative.dlpires.palmphone_n.Classes;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by root on 14/01/18.
@@ -16,6 +15,7 @@ public class Professor {
     private String senhaProf;
     private String rgProf;
     private String dataNascProf;
+    private String url;
     private ArrayList <Disciplina> disciplinas;
 
     //CONSTRUTORES
@@ -23,7 +23,7 @@ public class Professor {
 
     }
 
-    public Professor(int codProf, String nomeProf, String emailProf, String senhaProf, String rgProf, String dataNascProf, ArrayList<Disciplina> disciplinas) {
+    public Professor(int codProf, String nomeProf, String emailProf, String senhaProf, String rgProf, String dataNascProf, ArrayList<Disciplina> disciplinas, String url) {
         this.codProf = codProf;
         this.nomeProf = nomeProf;
         this.emailProf = emailProf;
@@ -31,9 +31,18 @@ public class Professor {
         this.rgProf = rgProf;
         this.dataNascProf = dataNascProf;
         this.disciplinas = disciplinas;
+        this.url = url;
     }
 
     //GETTERS E SETTERS
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public int getCodProf() {
         return codProf;
     }
