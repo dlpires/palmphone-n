@@ -109,7 +109,7 @@ public class LoginPage extends AppCompatActivity {
                 }
                 //CASO CONTRARIO, MOSTRA MENSAGEM AO USUÁRIO
                 else{
-                    NotificaUser.alertaToast(LoginPage.this, "Falha no Login: Usuario ou Senha Incorreta!");
+                    NotificaUser.alertaCaixaDialogo(LoginPage.this,"Falha no Login!" ,"Usuário ou Senha Incorreta!");
                 }
                 //FECHANDO BARRA DE PROGRESSO (LOADING)
                 NotificaUser.hideProgressDialog();

@@ -36,6 +36,7 @@ import java.util.List;
 //CLASSE JAVA PARA A TELA PRINCIPAL DO APP
 public class MenuPage extends AppCompatActivity {
 
+    private ManipulaArquivo arq;
     //ATRIBUTOS PARA O FIREBASE
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
@@ -53,6 +54,9 @@ public class MenuPage extends AppCompatActivity {
         //PUXANDO INSTANCIA UNICA DE AUTENTICAÇÃO DO FIREBASE
         auth = ConnectFirebase.getFirebaseAuth();
         databaseReference = ConnectFirebase.getFirebaseDbRef();
+
+        //INCIALIZANDO OUTROS OBJETOS
+        arq = new ManipulaArquivo();
     }
 
     //MÉTODO BOTÃO DE PERFIL
@@ -79,6 +83,14 @@ public class MenuPage extends AppCompatActivity {
     }
 
     public void sincronizarFirebase(View v){
+
+        //VERIFICANDO SE EXISTE ARQUIVOS PARA SINCRONIZAR
+        if(!arq.existeArquivo(MenuPage.this, auth.getCurrentUser().getEmail().toString())){
+            //SE NÃO EXISTIR ARQUIVO, ELE NOTIFICA USUÁRIO E PARA A SINCRONIZAÇÃO
+            NotificaUser.alertaCaixaDialogo(MenuPage.this, "Atenção!", "Não há dados para sincronizar!");
+            return;
+        }
+
         //CRIANDO ALERTA PARA SINCRONIZAR DADOS NO SERVIDOR
         new AlertDialog.Builder(MenuPage.this)
                 .setTitle("Confirmação")
@@ -96,18 +108,10 @@ public class MenuPage extends AppCompatActivity {
 
     //MÉTODO PARA SINCRONIZAR DADOS NO FIREABSE
     public void salvandoFirebase() {
-        final ManipulaArquivo arq = new ManipulaArquivo();
         final Gson gson = new Gson();
 
         //PEGANDO EMAIL DO USUÁRIO
         final String userLogado = auth.getCurrentUser().getEmail().toString();
-
-        //VERIFICANDO SE EXISTE ARQUIVOS PARA SINCRONIZAR
-        if(!arq.existeArquivo(MenuPage.this, userLogado)){
-            //SE NÃO EXISTIR ARQUIVO, ELE NOTIFICA USUÁRIO E PARA A SINCRONIZAÇÃO
-            NotificaUser.alertaToast(MenuPage.this, "Não há dados para sincronizar!");
-            return;
-        }
 
         //INSTANCIANDO VALORES
         //COMPARANDO COM OS EMAILS CADASTRADOS NO DB

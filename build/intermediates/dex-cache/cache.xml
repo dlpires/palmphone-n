@@ -12,48 +12,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/root/.android/build-cache/89fb67bd5d12acc183aef6f35469a85af7202343/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="ba4defc8cb4ed5b90b8ef71602722cdeebe507cd">
-        <dex dex="/media/dlpires/ARQUIVOS/Documentos/TCC/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_61acd73ee385d8fff0b1fe5f0ca04a8d836d7611/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.android/build-cache/1a73e304b323020a6be60edb08af7f1cb51c8620/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="3dbaff65d26258306561d545f88d6712ac41dd46">
-        <dex dex="/media/dlpires/ARQUIVOS/Documentos/TCC/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_dfdbb82f7ee9284a48550ca57915b7448f0a3918/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/media/dlpires/ARQUIVOS/Documentos/TCC/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_f07471cc8daabba9b33b6c2492a169834e3c6749/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/media/dlpires/ARQUIVOS/Documentos/TCC/palmphone-n/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="0d7bf4af156c0bcccab2b1acd7f2db81ae31bd3b">
+        sha1="d5ffff13147e29843d7353025ee9ebf97cf7e382">
         <dex dex="/media/dlpires/ARQUIVOS/Documentos/TCC/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_73a0ee118b4690d20b25d90477cd2884e41ecd4d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.2/3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf/gson-2.8.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf">
-        <dex dex="/media/dlpires/ARQUIVOS/Documentos/TCC/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.8.2_1aa23430f1412189115fe3f80f548bc312421bf6/classes.dex" />
     </item>
 
 </items>

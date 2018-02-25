@@ -167,7 +167,7 @@ public class ColetorPage extends AppCompatActivity {
                     preencherSpinner(spinnerDisciplinas, nomesDisciplinas);
 
                     //FINALIZANDO PROGRESSBAR
-                    NotificaUser.hideProgressDialog();
+                    NotificaUser.hideProgressDialog3000();
                 }
             }
 

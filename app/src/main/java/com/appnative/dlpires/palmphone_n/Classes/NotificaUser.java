@@ -1,12 +1,15 @@
 package com.appnative.dlpires.palmphone_n.Classes;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.appnative.dlpires.palmphone_n.Activity.ColetorDadosPage;
 import com.appnative.dlpires.palmphone_n.R;
 
 /**
@@ -39,7 +42,7 @@ public class NotificaUser {
     }
 
     //MÉTODO PARA PARAR A BARRA DE PROGRESSO
-    public static void hideProgressDialog() {
+    public static void hideProgressDialog3000() {
         Handler handler = new Handler();
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             //COLOCANDO DELAY DE 3000 MILISEGUNDOS NA BARRA DE PROGRESSO
@@ -49,5 +52,21 @@ public class NotificaUser {
                 }
             }, 3000);
         }
+    }
+
+    //MÉTODO PARA PARAR A BARRA DE PROGRESSO
+    public static void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    //MÉTODO DE CAIXA DE DIALOGO SIMPLES
+    public static void alertaCaixaDialogo(Context context, String title, String msg){
+        new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(msg)
+                .setPositiveButton("OK", null)
+                .show();
     }
 }

@@ -120,7 +120,7 @@ public class UserPage extends AppCompatActivity{
         crud.carregaImagemPerfilUser(imageView, UserPage.this);
 
         //FECHANDO BARRA DE PROGRESSO (LOADING)
-        NotificaUser.hideProgressDialog();
+        NotificaUser.hideProgressDialog3000();
     }
 
     //MÉTODO QUE ACIONA O BOTÃO VOLTAR DA TOOLBAR

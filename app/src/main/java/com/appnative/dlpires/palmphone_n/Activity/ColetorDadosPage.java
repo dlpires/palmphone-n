@@ -98,7 +98,7 @@ public class ColetorDadosPage extends AppCompatActivity {
                 new AlertDialog.Builder(ColetorDadosPage.this)
                         .setTitle("Confirmação")
                         .setMessage("Deseja salvar o RA: " + ra.getText() + "?")
-                        .setPositiveButton("sim",
+                        .setPositiveButton("CONFIRMAR",
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -107,7 +107,7 @@ public class ColetorDadosPage extends AppCompatActivity {
                                         NotificaUser.alertaSonoro(ColetorDadosPage.this);
                                     }
                                 })
-                        .setNegativeButton("não", null)
+                        .setNegativeButton("CANCELAR", null)
                         .show();
             }
         });
@@ -116,18 +116,25 @@ public class ColetorDadosPage extends AppCompatActivity {
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //VERIFICANDO SE A DADOS PARA FINALIZAR CHAMADA E INFORMANDO AO USUÁRIO
+                if(ras.isEmpty()){
+                    NotificaUser.alertaCaixaDialogo(ColetorDadosPage.this, "Atenção!", "Sem dados para finalizar a chamada!");
+                    return;
+                }
+
                 //CRIANDO CONFIRMAÇÃO PARA SALVAR A CHAMADA
                 new AlertDialog.Builder(ColetorDadosPage.this)
                         .setTitle("Confirmação")
                         .setMessage("Deseja finalizar a chamada?")
-                        .setPositiveButton("sim",
+                        .setPositiveButton("CONFIRMAR",
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         finalizarChamada();
                                     }
                                 })
-                        .setNegativeButton("não", null)
+                        .setNegativeButton("CANCELAR", null)
                         .show();
 
             }
@@ -140,14 +147,14 @@ public class ColetorDadosPage extends AppCompatActivity {
                 new AlertDialog.Builder(ColetorDadosPage.this)
                         .setTitle("Confirmação")
                         .setMessage("Deseja cancelar a chamada?")
-                        .setPositiveButton("sim",
+                        .setPositiveButton("CONFIRMAR",
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         voltarPaginaColetor();
                                     }
                                 })
-                        .setNegativeButton("não", null)
+                        .setNegativeButton("CANCELAR", null)
                         .show();
             }
         });
@@ -155,6 +162,7 @@ public class ColetorDadosPage extends AppCompatActivity {
 
     //MÉTODO PARA FINALIZAR CHAMADA
     private void finalizarChamada() {
+
         //INICIALIZANDO OBJETO GSON
         Gson gson = new Gson();
 
@@ -211,7 +219,7 @@ public class ColetorDadosPage extends AppCompatActivity {
                 new AlertDialog.Builder(ColetorDadosPage.this)
                         .setTitle("Confirmação")
                         .setMessage("Deseja salvar o RA: " + result.getContents() + "?")
-                        .setPositiveButton("sim",
+                        .setPositiveButton("CONFIRMAR",
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -221,7 +229,7 @@ public class ColetorDadosPage extends AppCompatActivity {
                                         scannerStart();
                                     }
                                 })
-                        .setNegativeButton("não", null)
+                        .setNegativeButton("CANCELAR", null)
                         .show();
             }
             //CASO CPNTRÁRIO, SERÁ INFORMADO AO USUÁRIO QUE A CAPTURA NÃO FOI BEM SUCEDIDA
