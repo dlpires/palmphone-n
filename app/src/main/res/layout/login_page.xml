@@ -88,6 +88,19 @@
             android:text="ENTRAR"
             android:textColor="@android:color/white"
             android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonCadastro"
+            android:layout_width="348dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:onClick="botaoCadastro"
+            android:text="CADASTRAR NOVO USUÁRIO"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
     </LinearLayout>

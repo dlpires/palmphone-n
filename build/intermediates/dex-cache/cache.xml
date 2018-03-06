@@ -2,22 +2,22 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="/media/dlpires/ARQUIVOS/Documentos/TCC/palmphone-n/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\dlpires\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.0"
-        sha1="c323c36ecc68965c4cfb460f7721113d2b61ed03">
-        <dex dex="/media/dlpires/ARQUIVOS/Documentos/TCC/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_348a361d5bec6bd0743a5ceb9399b796af20aa84/classes.dex" />
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\Documentos\TCC\palmphone-n\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_6086900e60b978c103bc2aceda89011766cfd73d.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/media/dlpires/ARQUIVOS/Documentos/TCC/palmphone-n/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\dlpires\.android\build-cache\49dd750916710d8b3a6de84426f385a85e3c9a8e\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.0"
-        sha1="d5ffff13147e29843d7353025ee9ebf97cf7e382">
-        <dex dex="/media/dlpires/ARQUIVOS/Documentos/TCC/palmphone-n/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_73a0ee118b4690d20b25d90477cd2884e41ecd4d/classes.dex" />
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\Documentos\TCC\palmphone-n\app\build\intermediates\pre-dexed\debug\classes_4376de2684850e985baef66819ce1e868d7e68f9.jar" />
     </item>
 
 </items>

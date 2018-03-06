@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.appnative.dlpires.palmphone_n.Activity.CadastroPage">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:elevation="0dp"
+        android:layoutMode="clipBounds"
+        android:minHeight="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_voltar2"
+        android:theme="?attr/actionBarTheme"
+        app:title="Professor"
+        app:titleTextColor="@android:color/black" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginRight="19dp"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/buttonEscArq"
+                        android:layout_width="160dp"
+                        android:layout_height="42dp"
+                        android:layout_gravity="center"
+                        android:background="@android:color/darker_gray"
+                        android:text="Choose file"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtNomeArq"
+                        android:hint="No file chosen" />
+
+
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/textNome"
+                        android:layout_width="348dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:fontFamily="sans-serif"
+                        android:hint="Nome"
+                        android:isScrollContainer="false"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="16sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/textRg"
+                        android:layout_width="348dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:fontFamily="sans-serif"
+                        android:hint="RG"
+                        android:isScrollContainer="false"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="16sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/textDtNasc"
+                        android:layout_width="348dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:fontFamily="sans-serif"
+                        android:hint="Data Nascimento"
+                        android:isScrollContainer="false"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="16sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <Spinner
+                    android:id="@+id/spinnerDisciplina"
+                    android:layout_width="348dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0.21"
+                    android:isScrollContainer="false"
+                    android:pointerIcon="context_menu"
+                    android:spinnerMode="dialog"
+                    android:textColor="@android:color/black" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/textEmail"
+                        android:layout_width="348dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:fontFamily="sans-serif"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:isScrollContainer="false"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="16sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/textSenha"
+                        android:layout_width="348dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:fontFamily="sans-serif"
+                        android:hint="Senha"
+                        android:inputType="textPassword"
+                        android:isScrollContainer="false"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="16sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/buttonCadastro"
+                    android:layout_width="348dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/colorPrimary"
+                    android:text="SALVAR"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+</LinearLayout>

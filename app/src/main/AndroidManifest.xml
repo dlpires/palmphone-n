@@ -1,8 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.appnative.dlpires.palmphone_n">
 
-    <!--PERMISSÃO PARA LER E SALVAR ARQUIVOS INTERNAMENTE-->
+    <!-- PERMISSÃO PARA LER E SALVAR ARQUIVOS INTERNAMENTE -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -14,27 +14,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <!--Pagina de Login (Inicial)-->
+        <!-- Pagina de Login (Inicial) -->
         <activity android:name=".Activity.LoginPage">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Menu Principal -->
+        <activity android:name=".Activity.MenuPage" />
 
-        <!--Menu Principal-->
-        <activity android:name=".Activity.MenuPage"></activity>
+        <!-- Perfil Usuário -->
+        <activity android:name=".Activity.UserPage" />
 
-        <!--Perfil Usuário-->
-        <activity android:name=".Activity.UserPage"></activity>
+        <!-- Página de Opções: Coletor -->
+        <activity android:name=".Activity.ColetorPage" />
 
-        <!--Página de Opções: Coletor-->
-        <activity android:name=".Activity.ColetorPage"></activity>
+        <!-- Página de Opções: Coleta de Dados -->
+        <activity android:name=".Activity.ColetorDadosPage" />
 
-        <!--Página de Opções: Coleta de Dados-->
-        <activity android:name=".Activity.ColetorDadosPage"></activity>
-
+        <!-- Cadastro de Usuario -->
+        <activity android:name=".Activity.CadastroPage"></activity>
     </application>
 
 </manifest>

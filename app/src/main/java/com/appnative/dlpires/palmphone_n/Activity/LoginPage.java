@@ -105,6 +105,8 @@ public class LoginPage extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 //CASO A REQUISIÇÃO FOR VALIDADA, MOSTRAR TELA PRINCIPAL
                 if(task.isSuccessful()){
+                    //SALVANDO INFORMAÇÕES DO USUÁRIO LOGADO
+                    crud.infUserLogado(auth.getCurrentUser().getUid(), LoginPage.this);
                     abrirTelaPrincipal();
                 }
                 //CASO CONTRARIO, MOSTRA MENSAGEM AO USUÁRIO
@@ -120,6 +122,12 @@ public class LoginPage extends AppCompatActivity {
     //MÉTODO PARA ABRIR TELA PRINCIPAL
     private void abrirTelaPrincipal(){
         Intent intent = new Intent(LoginPage.this, MenuPage.class);
+        startActivity(intent);
+    }
+
+    //MÉTODO PARA ABRIR TELA DE CADASTRO
+    public void botaoCadastro(View v){
+        Intent intent = new Intent(LoginPage.this, CadastroPage.class);
         startActivity(intent);
     }
 

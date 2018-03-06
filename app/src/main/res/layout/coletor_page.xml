@@ -15,7 +15,6 @@
         android:elevation="0dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:navigationIcon="@drawable/ic_voltar2"
         app:title="Coletor"
         app:titleTextColor="@android:color/background_dark" />
 
@@ -36,7 +35,6 @@
             android:enabled="false"
             android:inputType="textPersonName"
             android:textColor="@android:color/black" />
-        <!--android:hint="Josivaldo da Silva"-->
 
         <Spinner
             android:id="@+id/spinnerDisciplina"

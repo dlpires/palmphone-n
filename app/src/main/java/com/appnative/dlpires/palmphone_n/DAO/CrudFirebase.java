@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
+import com.appnative.dlpires.palmphone_n.Activity.UserPage;
 import com.appnative.dlpires.palmphone_n.Classes.Disciplina;
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
 import com.appnative.dlpires.palmphone_n.Classes.Professor;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class CrudFirebase {
     private StorageReference storageReference;
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
+    private ManipulaArquivo arq;
 
 
     //CONSTRUTOR CLASSE
@@ -42,8 +45,28 @@ public class CrudFirebase {
         databaseReference = ConnectFirebase.getFirebaseDbRef();
     }
 
-    public void setProfessor(DataSnapshot snapshot){
+    //MÉTODO PARA ARMAZENAR INFORMAÇÕES DO USUÁRIO LOGADO EM UM ARQUIVO JSON
+    public void infUserLogado(final String uid, final Context context){
+        //INICIALIZANDO OBJETO RESPONSÁVEL POR MANIPULAÇÃO DE ARQUIVO
+        arq = new ManipulaArquivo();
+        //FAZENDO ACESSO A BASE DE DADOS DO FIREBASE, BUSCANDO PELO UID DO USUÁRIO AS SUAS INFORMAÇÕES (CHAVE NO DATABASE
+        // É IDENTIFICADO PELO USUÁRIO)
+        databaseReference.child("professor").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //PEGANDO INFORMAÇÕES DO JSON E INSERINDO NAS CAIXAS DE TEXTO
+                arq.gravarArquivo(uid + ".json", dataSnapshot.getValue().toString(), context, dataSnapshot.child("emailProf").getValue().toString());
 
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //VERIFICA SE USUÁRIO ESTA LOGADO, PARA MOSTRAR A MENSAGEM DE ERRO APENAS QUANDO O USUÁRIO ESTA LOGADO MAS A CONEXÃO
+                //COM O BANCO FOI PERDIDA
+                if(usuarioLogado())
+                    NotificaUser.alertaToast(context, databaseError.toString());
+            }
+        });
     }
 
     //MÉTODO PARA BUSCAR E MOSTRAR IMAGEM DO PERFIL DO USUÁRIO

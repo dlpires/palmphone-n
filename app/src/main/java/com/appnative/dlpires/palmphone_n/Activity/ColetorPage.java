@@ -13,7 +13,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.appnative.dlpires.palmphone_n.Classes.Disciplina;
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
+import com.appnative.dlpires.palmphone_n.Classes.Professor;
+import com.appnative.dlpires.palmphone_n.Classes.Ra;
 import com.appnative.dlpires.palmphone_n.DAO.ManipulaArquivo;
 import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
 import com.appnative.dlpires.palmphone_n.DAO.CrudFirebase;
@@ -23,9 +26,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by dlpires on 28/07/17.
@@ -48,6 +58,8 @@ public class ColetorPage extends AppCompatActivity {
 
     //OUTRAS REFERENCIAS
     private ManipulaArquivo arq;
+    private Gson gson;
+    private Professor professor;
 
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override
@@ -74,9 +86,8 @@ public class ColetorPage extends AppCompatActivity {
 
         //INICIALIZANDO OBJETOS
         arq = new ManipulaArquivo();
+        gson = new Gson();
 
-        //INICIANDO PROGRESSBAR
-        NotificaUser.showProgressDialog(ColetorPage.this);
         //CHAMANDO MÉTODOS DA CLASSE
         carregaInfoUser();
     }
@@ -124,7 +135,24 @@ public class ColetorPage extends AppCompatActivity {
     }
 
     //MÉTODO QUE CHAMA AS INFORMAÇÕES DO USUÁRIO
-    public void carregaInfoUser(){
+    public void carregaInfoUser() {
+
+        //OBJETO JSONObject
+        JsonParser parser = new JsonParser();
+
+        //PEGANDO EMAIL DO USUARIO LOGADO
+        String userLogado = auth.getCurrentUser().getUid();
+        String emailUserLogado = auth.getCurrentUser().getEmail();
+
+        String json = arq.lerArquivo(userLogado + ".json", ColetorPage.this, emailUserLogado);
+        /*JSONObject jsonObject = (JSONObject) parser.parse(json);
+        professor.setNomeProf(jsonObject.getString("nomeProf"));*/
+
+
+        //INSTANCIANDO VALORES
+        //PEGANDO ARRAY COM OS NOMES DAS DISCIPLINAS
+        professor = gson.fromJson(json, Professor.class);
+
         //CRIANDO ARRAY LIST DE NUMERO DE AULAS
         ArrayList<String> nAulas = new ArrayList<String>(){
             {
@@ -138,48 +166,19 @@ public class ColetorPage extends AppCompatActivity {
         //CHAMANDO MÉTODO PARA PREENCHER SPINNER
         preencherSpinner(spinnerAula, nAulas);
 
+        //professor.setDisciplinas((ArrayList<HashMap<String,String>>) gson.fromJson(json, new TypeToken<List<HashMap<String, String>>>(){}.getType()));
 
-        //PEGANDO EMAIL DO USUARIO LOGADO
-        String userLogado = auth.getCurrentUser().getEmail().toString();
-
-        //INSTANCIANDO VALORES
-        //COMPARANDO COM OS EMAILS CADASTRADOS NO DB
-        databaseReference.child("professor").orderByChild("emailProf").equalTo(userLogado).addListenerForSingleValueEvent(new ValueEventListener() {
-
-            //MÉTODO SOBRESCRITO QUE RESGATA OS DADOS ENCONTRADOS
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //PEGANDO INFORMAÇÕES DO JSON E INSERINDO NAS CAIXAS DE TEXTO
-                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    nomeUser.setText((String) postSnapshot.child("nomeProf").getValue());
-
-                    //PEGANDO ARRAY COM OS NOMES DAS DISCIPLINAS
-                    ArrayList<HashMap<String, String>> disciplinas = (ArrayList<HashMap<String, String>>) postSnapshot.child("disciplinas").getValue();
-                    ArrayList<String> nomesDisciplinas = new ArrayList<String>();
-                    //ADICIONANDO VALORES DO HASHMAP NO ARRAY DE STRINGS
-                    nomesDisciplinas.add("Selecione uma Disciplina");
-                    for(int i = 0; i < disciplinas.size(); i++){
-                        for(String key : disciplinas.get(i).keySet()){
-                            nomesDisciplinas.add(disciplinas.get(i).get(key));
-                        }
-                    }
-                    //CHAMANDO MÉTODO PARA PREENCHER SPINNER
-                    preencherSpinner(spinnerDisciplinas, nomesDisciplinas);
-
-                    //FINALIZANDO PROGRESSBAR
-                    NotificaUser.hideProgressDialog3000();
-                }
+        /*ArrayList<String> disciplinas = professor.getDisciplinas();
+        ArrayList<String> nomesDisciplinas = new ArrayList<String>();
+        //ADICIONANDO VALORES DO HASHMAP NO ARRAY DE STRINGS
+        nomesDisciplinas.add("Selecione uma Disciplina");
+        for(int i = 0; i < disciplinas.size(); i++){
+            for(String key : disciplinas.get(i).keySet()){
+                nomesDisciplinas.add(disciplinas.get(i).get(key));
             }
-
-            //CASO NÃO FOR ENCONTRADO OU A CONEXÃO FOR CANCELADA, ESTE MÉTODO É ACIONADO
-            @Override
-            public void onCancelled (DatabaseError databaseError) {
-                //VERIFICA SE USUÁRIO ESTA LOGADO, PARA MOSTRAR A MENSAGEM DE ERRO APENAS QUANDO O USUÁRIO ESTA LOGADO MAS A CONEXÃO
-                //COM O BANCO FOI PERDIDA
-                if(crud.usuarioLogado())
-                    NotificaUser.alertaToast(ColetorPage.this, databaseError.toString());
-            }
-        });
+        }*/
+        //CHAMANDO MÉTODO PARA PREENCHER SPINNER
+        preencherSpinner(spinnerDisciplinas, (ArrayList<String>) professor.getDisciplinas());
     }
 
     //MÉTODO PARA PREENCHER SPINNER

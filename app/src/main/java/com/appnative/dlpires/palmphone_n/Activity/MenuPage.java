@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
 import com.appnative.dlpires.palmphone_n.Classes.Ra;
+import com.appnative.dlpires.palmphone_n.DAO.CrudFirebase;
 import com.appnative.dlpires.palmphone_n.DAO.ManipulaArquivo;
 import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
 import com.appnative.dlpires.palmphone_n.R;
@@ -37,6 +38,7 @@ import java.util.List;
 public class MenuPage extends AppCompatActivity {
 
     private ManipulaArquivo arq;
+
     //ATRIBUTOS PARA O FIREBASE
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
@@ -73,6 +75,9 @@ public class MenuPage extends AppCompatActivity {
 
     //MÉTODO ACIONADO NO BOTÃO DE LOGOUT
     public void botaoLogout(View v) {
+        //APAGANDO ARQUIVO DE USUÁRIO LOGADO
+        arq.apagarArquivo(MenuPage.this, auth.getCurrentUser().getEmail(), auth.getCurrentUser().getUid());
+
         //Saindo do Sistema
         auth.signOut();
 
