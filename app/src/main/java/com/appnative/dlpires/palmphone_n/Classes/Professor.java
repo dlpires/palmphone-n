@@ -1,5 +1,12 @@
 package com.appnative.dlpires.palmphone_n.Classes;
 
+import android.content.Context;
+import android.net.Uri;
+import android.widget.ImageView;
+
+import com.appnative.dlpires.palmphone_n.DAO.CrudFirebase;
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +18,9 @@ import java.util.List;
 //CLASSE PROFESSOR
 public class Professor {
     //ATRIBUTOS
+    @Exclude
     private int codProf;
+
     private String nomeProf;
     private String emailProf;
     private String senhaProf;
@@ -34,10 +43,12 @@ public class Professor {
         this.url = url;
     }
 
+    @Exclude
     public int getCodProf() {
         return codProf;
     }
 
+    @Exclude
     public void setCodProf(int codProf) {
         this.codProf = codProf;
     }
@@ -88,5 +99,20 @@ public class Professor {
 
     public void setDisciplinas(List<String> disciplinas) {
         this.disciplinas = disciplinas;
+    }
+
+
+    //MÉTODO PARA CADASTRAR USUÁRIO
+    public void create(Context context, Uri imageUri){
+        //INSTANCIANDO OBJETO PARA REALIZAR A PERSISTENCIA DE DADOS
+        CrudFirebase crud = new CrudFirebase(this);
+
+        //MÉTODOS DE CADASTRO
+        crud.createUser(context, imageUri);
+    }
+
+    //MÉTODO PARA SALVAR OBJETO EM ARQUIVO JSON
+    public void createJson(){
+
     }
 }

@@ -58,7 +58,6 @@ public class ManipulaArquivo {
             //LOOP PARA LER AS LINHAS DO ARQUIVO
             while ((line = br.readLine()) != null) {
                 text.append(line);
-                text.append("\n");
             }
 
             //FECHANDO O ARQUIVO
@@ -78,7 +77,11 @@ public class ManipulaArquivo {
         File root = new File(context.getFilesDir(),emailUser);
         File file = new File(root, nomeArquivo);
         //APAGANDO ARQUIVO
-        file.delete();
+        try {
+            file.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //MÉTODO PARA VERIFICAR SE EXISTE ARQUIVOS SALVOS

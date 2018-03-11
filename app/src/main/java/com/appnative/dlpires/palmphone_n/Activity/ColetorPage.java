@@ -137,22 +137,6 @@ public class ColetorPage extends AppCompatActivity {
     //MÉTODO QUE CHAMA AS INFORMAÇÕES DO USUÁRIO
     public void carregaInfoUser() {
 
-        //OBJETO JSONObject
-        JsonParser parser = new JsonParser();
-
-        //PEGANDO EMAIL DO USUARIO LOGADO
-        String userLogado = auth.getCurrentUser().getUid();
-        String emailUserLogado = auth.getCurrentUser().getEmail();
-
-        String json = arq.lerArquivo(userLogado + ".json", ColetorPage.this, emailUserLogado);
-        /*JSONObject jsonObject = (JSONObject) parser.parse(json);
-        professor.setNomeProf(jsonObject.getString("nomeProf"));*/
-
-
-        //INSTANCIANDO VALORES
-        //PEGANDO ARRAY COM OS NOMES DAS DISCIPLINAS
-        professor = gson.fromJson(json, Professor.class);
-
         //CRIANDO ARRAY LIST DE NUMERO DE AULAS
         ArrayList<String> nAulas = new ArrayList<String>(){
             {
@@ -166,18 +150,19 @@ public class ColetorPage extends AppCompatActivity {
         //CHAMANDO MÉTODO PARA PREENCHER SPINNER
         preencherSpinner(spinnerAula, nAulas);
 
-        //professor.setDisciplinas((ArrayList<HashMap<String,String>>) gson.fromJson(json, new TypeToken<List<HashMap<String, String>>>(){}.getType()));
+        //PEGANDO EMAIL DO USUARIO LOGADO
+        String userLogado = auth.getCurrentUser().getUid();
+        String emailUserLogado = auth.getCurrentUser().getEmail();
 
-        /*ArrayList<String> disciplinas = professor.getDisciplinas();
-        ArrayList<String> nomesDisciplinas = new ArrayList<String>();
-        //ADICIONANDO VALORES DO HASHMAP NO ARRAY DE STRINGS
-        nomesDisciplinas.add("Selecione uma Disciplina");
-        for(int i = 0; i < disciplinas.size(); i++){
-            for(String key : disciplinas.get(i).keySet()){
-                nomesDisciplinas.add(disciplinas.get(i).get(key));
-            }
-        }*/
-        //CHAMANDO MÉTODO PARA PREENCHER SPINNER
+        String jsonDisc = arq.lerArquivo(userLogado + ".json", ColetorPage.this, emailUserLogado);
+
+        //INSTANCIANDO VALORES
+        //PEGANDO ARRAY COM OS NOMES DAS DISCIPLINAS
+        Professor professor = gson.fromJson(jsonDisc, Professor.class);
+
+        //INFORMANDO NOME DO PROFESSOR
+        nomeUser.setText(professor.getNomeProf());
+
         preencherSpinner(spinnerDisciplinas, (ArrayList<String>) professor.getDisciplinas());
     }
 

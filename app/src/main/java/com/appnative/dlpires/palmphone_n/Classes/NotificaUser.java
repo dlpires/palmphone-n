@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.widget.Toast;
@@ -67,6 +68,20 @@ public class NotificaUser {
                 .setTitle(title)
                 .setMessage(msg)
                 .setPositiveButton("OK", null)
+                .show();
+    }
+
+    //MÉTODO DE CAIXA DE DIALOGO SIMPLES COM EVENTO DE ABRIR ACTIVITIES
+    public static void alertaCaixaDialogo(final Context context, String title, String msg, final Class c){
+        new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(msg)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        context.startActivity(new Intent(context, c));
+                    }
+                })
                 .show();
     }
 }

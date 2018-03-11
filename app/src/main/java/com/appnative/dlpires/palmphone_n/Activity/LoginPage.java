@@ -50,8 +50,14 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(b);
         setContentView(R.layout.login_page);
 
+        //INSTANCIANDO OBJETO
+        professor = new Professor();
+
         //INCIACIALIZANDO CRUD
-        crud = new CrudFirebase();
+        crud = new CrudFirebase(professor);
+
+        //PUXANDO INSTANCIA UNICA DE AUTENTICAÇÃO DO FIREBASE
+        auth = ConnectFirebase.getFirebaseAuth();
 
         //INICIANDO TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarLogin);
@@ -60,6 +66,9 @@ public class LoginPage extends AppCompatActivity {
         //VERIFICA SE USUÁRIO JÁ ESTA LOGADO NO APP, ONDE SE VERDADEIRO, ENTRA NA PAGINA DE MENU DIRETAMENTE, E CASO CONTRARIO ELE INSTANCIA
         //OS EDITTEXT DE LOGIN E SENHA
         if (crud.usuarioLogado()){
+
+            //SALVANDO INFORMAÇÕES DO USUÁRIO LOGADO
+            crud.infUserLogado(auth.getCurrentUser().getUid(), LoginPage.this);
             Intent intent = new Intent(LoginPage.this, MenuPage.class);
             startActivity(intent);
         }
@@ -73,8 +82,7 @@ public class LoginPage extends AppCompatActivity {
 
     //EVENTO ONCLICK DO BOTÃO LOGIN
     public void botaoLogin(View v) {
-        //INSTANCIANDO E INSERINDO OS VALORES NO OBJETO.
-        professor = new Professor();
+        //INSERINDO OS VALORES NO OBJETO.
         professor.setEmailProf(email.getText().toString());
         professor.setSenhaProf(senha.getText().toString());
 
@@ -97,8 +105,6 @@ public class LoginPage extends AppCompatActivity {
         //MOSTRANDO BARRA DE PROGRESSO (LOADING)
         NotificaUser.showProgressDialog(LoginPage.this);
 
-        //PUXANDO INSTANCIA UNICA DE AUTENTICAÇÃO DO FIREBASE
-        auth = ConnectFirebase.getFirebaseAuth();
         //CHAMANDO MÉTODO DE AUTENTICAÇÃO DO FIREBASE, PASSANDO AS INFORMAÇÕES CONTIDAS NO OBJETO
         auth.signInWithEmailAndPassword(professor.getEmailProf(), professor.getSenhaProf()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

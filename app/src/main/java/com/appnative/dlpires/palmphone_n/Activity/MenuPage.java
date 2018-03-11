@@ -43,6 +43,8 @@ public class MenuPage extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
 
+    private CrudFirebase crud;
+
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override
     protected void onCreate(Bundle b) {
@@ -59,6 +61,7 @@ public class MenuPage extends AppCompatActivity {
 
         //INCIALIZANDO OUTROS OBJETOS
         arq = new ManipulaArquivo();
+        crud = new CrudFirebase();
     }
 
     //MÉTODO BOTÃO DE PERFIL
@@ -75,16 +78,25 @@ public class MenuPage extends AppCompatActivity {
 
     //MÉTODO ACIONADO NO BOTÃO DE LOGOUT
     public void botaoLogout(View v) {
-        //APAGANDO ARQUIVO DE USUÁRIO LOGADO
-        arq.apagarArquivo(MenuPage.this, auth.getCurrentUser().getEmail(), auth.getCurrentUser().getUid());
 
-        //Saindo do Sistema
-        auth.signOut();
+        //CRIANDO ALERTA PARA SINCRONIZAR DADOS NO SERVIDOR
+        AlertDialog show = new AlertDialog.Builder(MenuPage.this)
+                .setTitle("Confirmação")
+                .setMessage("Deseja sair do sistema?")
+                .setPositiveButton("CONFIRMAR",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                crud.signOut(MenuPage.this);
+                                //Voltando a página de Login
+                                Intent intent = new Intent(MenuPage.this, LoginPage.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                .setNegativeButton("CANCELAR", null)
+                .show();
 
-        //Voltando a página de Login
-        Intent i = new Intent(MenuPage.this, LoginPage.class);
-        startActivity(i);
-        finish();
     }
 
     public void sincronizarFirebase(View v){
