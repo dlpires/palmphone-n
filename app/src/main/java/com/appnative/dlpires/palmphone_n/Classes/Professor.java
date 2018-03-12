@@ -4,11 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.widget.ImageView;
 
-import com.appnative.dlpires.palmphone_n.DAO.CrudFirebase;
+import com.appnative.dlpires.palmphone_n.Activity.ColetorPage;
+import com.appnative.dlpires.palmphone_n.DAO.FirebaseAuthDAO;
+import com.appnative.dlpires.palmphone_n.DAO.FirebaseDatabaseDAO;
+import com.appnative.dlpires.palmphone_n.DAO.FirebaseStorageDAO;
+import com.appnative.dlpires.palmphone_n.DAO.ManipulaArquivo;
 import com.google.firebase.database.Exclude;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -104,15 +108,50 @@ public class Professor {
 
     //MÉTODO PARA CADASTRAR USUÁRIO
     public void create(Context context, Uri imageUri){
-        //INSTANCIANDO OBJETO PARA REALIZAR A PERSISTENCIA DE DADOS
-        CrudFirebase crud = new CrudFirebase(this);
-
         //MÉTODOS DE CADASTRO
-        crud.createUser(context, imageUri);
+        FirebaseAuthDAO.createUser(context, imageUri, this);
     }
 
     //MÉTODO PARA SALVAR OBJETO EM ARQUIVO JSON
-    public void createJson(){
-
+    public void createJson(Context context){
+        FirebaseDatabaseDAO.infUserLogado(context);
     }
+
+    //MÉTODO PARA LER AS INFORMAÇÕES DO OBJETO
+    public Professor readJson(Context context){
+        //CHAMANDO OBJETO: BIBLIOTECA JSON
+        Gson gson = new Gson();
+        //PEGANDO STRING JSON
+        String jsonDisc = ManipulaArquivo.lerArquivo(context);
+
+        //INSTANCIANDO VALORES
+        //PEGANDO ARRAY COM OS NOMES DAS DISCIPLINAS
+        return gson.fromJson(jsonDisc, Professor.class);
+    }
+
+    //MÉTODO PARA SALVAR UMA DISCIPLINA EM UM ARQUIVO LOCAL
+    public void setDisciplinaArq(String selectedItem, Context context){
+        //SALVANDO DISCIPLINA SELECIONADA NO SPINNER
+        ManipulaArquivo.gravarArquivo("disciplina.txt", selectedItem, context);
+    }
+
+    //MÉTODO PARA SALVAR CHAMADA
+    public void createChamada(Context context, Professor professor){
+        FirebaseDatabaseDAO.lerChamada(context, (ArrayList<String>) professor.getDisciplinas());
+    }
+
+    //MÉTODO PARA VALIDAR LOGIN NO SISTEMA
+    public boolean login(Context context){
+        if(FirebaseAuthDAO.loginUser(this, context)){
+            return true;
+        }
+        return false;
+    }
+
+    //MÉTODO PARA RESGATAR IMAGEM DE PERFIL
+    public void readImgPerfil(Context context, ImageView imageView){
+        FirebaseStorageDAO.carregaImagemPerfilUser(imageView, context);
+    }
+
+
 }

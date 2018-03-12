@@ -10,8 +10,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
+import com.appnative.dlpires.palmphone_n.Classes.Professor;
 import com.appnative.dlpires.palmphone_n.Classes.Ra;
-import com.appnative.dlpires.palmphone_n.DAO.CrudFirebase;
+import com.appnative.dlpires.palmphone_n.DAO.FirebaseAuthDAO;
 import com.appnative.dlpires.palmphone_n.DAO.ManipulaArquivo;
 import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
 import com.appnative.dlpires.palmphone_n.R;
@@ -37,13 +38,8 @@ import java.util.List;
 //CLASSE JAVA PARA A TELA PRINCIPAL DO APP
 public class MenuPage extends AppCompatActivity {
 
-    private ManipulaArquivo arq;
 
-    //ATRIBUTOS PARA O FIREBASE
-    private FirebaseAuth auth;
-    private DatabaseReference databaseReference;
-
-    private CrudFirebase crud;
+    private Professor professor;
 
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override
@@ -55,13 +51,9 @@ public class MenuPage extends AppCompatActivity {
         //INICIANDO TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarHome);
         setSupportActionBar(toolbar);
-        //PUXANDO INSTANCIA UNICA DE AUTENTICAÇÃO DO FIREBASE
-        auth = ConnectFirebase.getFirebaseAuth();
-        databaseReference = ConnectFirebase.getFirebaseDbRef();
 
-        //INCIALIZANDO OUTROS OBJETOS
-        arq = new ManipulaArquivo();
-        crud = new CrudFirebase();
+        //INSTANCIANDO OUTROS OBJETOS
+        professor = new Professor();
     }
 
     //MÉTODO BOTÃO DE PERFIL
@@ -78,16 +70,14 @@ public class MenuPage extends AppCompatActivity {
 
     //MÉTODO ACIONADO NO BOTÃO DE LOGOUT
     public void botaoLogout(View v) {
-
-        //CRIANDO ALERTA PARA SINCRONIZAR DADOS NO SERVIDOR
-        AlertDialog show = new AlertDialog.Builder(MenuPage.this)
+        new AlertDialog.Builder(this)
                 .setTitle("Confirmação")
                 .setMessage("Deseja sair do sistema?")
                 .setPositiveButton("CONFIRMAR",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                crud.signOut(MenuPage.this);
+                                FirebaseAuthDAO.signOut(MenuPage.this);
                                 //Voltando a página de Login
                                 Intent intent = new Intent(MenuPage.this, LoginPage.class);
                                 startActivity(intent);
@@ -102,14 +92,14 @@ public class MenuPage extends AppCompatActivity {
     public void sincronizarFirebase(View v){
 
         //VERIFICANDO SE EXISTE ARQUIVOS PARA SINCRONIZAR
-        if(!arq.existeArquivo(MenuPage.this, auth.getCurrentUser().getEmail().toString())){
+        if(!ManipulaArquivo.existeArquivo(MenuPage.this)){
             //SE NÃO EXISTIR ARQUIVO, ELE NOTIFICA USUÁRIO E PARA A SINCRONIZAÇÃO
-            NotificaUser.alertaCaixaDialogo(MenuPage.this, "Atenção!", "Não há dados para sincronizar!");
+            NotificaUser.alertaCaixaDialogoSimple(MenuPage.this, "Atenção!", "Não há dados para sincronizar!");
             return;
         }
 
         //CRIANDO ALERTA PARA SINCRONIZAR DADOS NO SERVIDOR
-        new AlertDialog.Builder(MenuPage.this)
+        new AlertDialog.Builder(this)
                 .setTitle("Confirmação")
                 .setMessage("Deseja sincronizar os dados com o servidor?")
                 .setPositiveButton("CONFIRMAR",
@@ -125,66 +115,6 @@ public class MenuPage extends AppCompatActivity {
 
     //MÉTODO PARA SINCRONIZAR DADOS NO FIREABSE
     public void salvandoFirebase() {
-        final Gson gson = new Gson();
-
-        //PEGANDO EMAIL DO USUÁRIO
-        final String userLogado = auth.getCurrentUser().getEmail().toString();
-
-        //INSTANCIANDO VALORES
-        //COMPARANDO COM OS EMAILS CADASTRADOS NO DB
-        databaseReference.child("professor").orderByChild("emailProf").equalTo(userLogado).addListenerForSingleValueEvent(new ValueEventListener() {
-
-            //MÉTODO SOBRESCRITO QUE RESGATA OS DADOS ENCONTRADOS
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //PEGANDO INFORMAÇÕES DO JSON E INSERINDO NAS CAIXAS DE TEXTO
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-                    //PEGANDO ARRAY COM OS NOMES DAS DISCIPLINAS
-                    ArrayList<HashMap<String, String>> disciplinas = (ArrayList<HashMap<String, String>>) postSnapshot.child("disciplinas").getValue();
-
-                    //LENDO O ARRAY
-                    for (int i = 0; i < disciplinas.size(); i++) {
-                        for (String key : disciplinas.get(i).keySet()) {
-                            String nomeArquivo = disciplinas.get(i).get(key) + ".json";
-                            //BUSCANDO DADOS DOS ARQUIVOS GERADOS
-                            //VERIFICANDO SE EXISTE ARQUIVO SALVO COM ESTE NOME
-                            if(!arq.lerArquivo(nomeArquivo, MenuPage.this, userLogado).equals("")){
-                                //PUXANDO NO ARRAY E SALVANDO O ARQUIVO
-                                ArrayList<Ra> chamadas = gson.fromJson(arq.lerArquivo(nomeArquivo, MenuPage.this, userLogado), new TypeToken<List<Ra>>(){}.getType());
-                                //SALVANDO NO FIREBASE
-                                salvarChamada(chamadas);
-                                //APAGANDO O ARQUIVO SALVO
-                                arq.apagarArquivo(MenuPage.this, userLogado, nomeArquivo);
-                            }
-                        }
-                    }
-
-                    NotificaUser.alertaToast(MenuPage.this, "Sincronização bem sucedida!");
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                //GRAVANDO NOS LOGS O ERRO ENCONTRADO
-                Log.d("Erro", databaseError.toString());
-            }
-        });
-    }
-
-    //MÉTODO PARA SALVAR DADOS NO FIREBASE
-    private void salvarChamada(ArrayList<Ra> chamada){
-        //PUXANDO DATA E HORA ATUAL, PARA USAR COMO CHAVE PRIMARIA
-        Date date = new Date();
-        String dataAtual = new SimpleDateFormat("ddMMyyyyhhmmss").format(date);
-
-        try{
-            databaseReference = ConnectFirebase.getFirebaseDbRef().child("chamadas");//CRIA NÓ (TABELA)
-            databaseReference.child(dataAtual).setValue(chamada);//PUXANDO A CHAVE PRIMARIA E INSERINDO USUARIO NOVO NÓ
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        professor.createChamada(this, professor.readJson(this));
     }
 }

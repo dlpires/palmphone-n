@@ -12,8 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.appnative.dlpires.palmphone_n.Classes.HardwareAccess;
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
 import com.appnative.dlpires.palmphone_n.Classes.Ra;
+import com.appnative.dlpires.palmphone_n.DAO.FirebaseAuthDAO;
 import com.appnative.dlpires.palmphone_n.DAO.ManipulaArquivo;
 import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
 import com.appnative.dlpires.palmphone_n.R;
@@ -41,16 +43,8 @@ public class ColetorDadosPage extends AppCompatActivity {
     private Button btnSalvar;
     private Button btnCancelar;
 
-
-    //REFERENCIAS DE OBJETOS
-    private ManipulaArquivo arq;
-    private ArrayList<Ra> ras;
-
-    //REFERENCIAS FIREBASE
-    private FirebaseAuth auth;
-
     //OUTRAS REFERENCIAS
-    private Date date;
+    private ArrayList<Ra> ras;
 
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override
@@ -75,18 +69,13 @@ public class ColetorDadosPage extends AppCompatActivity {
         ra = (EditText) findViewById(R.id.textRA);
 
         //INICIALIZANDO CLASSES E OBJETOS
-        arq = new ManipulaArquivo();
         ras = new ArrayList<>();
-        date = new Date();
-
-        //INSTANCIA OBJETO FIREBASE
-        auth = ConnectFirebase.getFirebaseAuth();
 
         //EVENTO DE INICIALIZAÇÃO DA LEITURA DE CODIGO DE BARRA E CONFIGURAÇÕES
         buttonBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scannerStart();
+                HardwareAccess.scannerStart(ColetorDadosPage.this);
             }
         });
 
@@ -97,7 +86,7 @@ public class ColetorDadosPage extends AppCompatActivity {
                 //CRIANDO ALERTA PARA SALVAR RA
                 new AlertDialog.Builder(ColetorDadosPage.this)
                         .setTitle("Confirmação")
-                        .setMessage("Deseja salvar o RA: " + ra.getText() + "?")
+                        .setMessage("Deseja finalizar a chamada?")
                         .setPositiveButton("CONFIRMAR",
                                 new DialogInterface.OnClickListener() {
                                     @Override
@@ -119,7 +108,7 @@ public class ColetorDadosPage extends AppCompatActivity {
 
                 //VERIFICANDO SE A DADOS PARA FINALIZAR CHAMADA E INFORMANDO AO USUÁRIO
                 if(ras.isEmpty()){
-                    NotificaUser.alertaCaixaDialogo(ColetorDadosPage.this, "Atenção!", "Sem dados para finalizar a chamada!");
+                    NotificaUser.alertaCaixaDialogoSimple(ColetorDadosPage.this, "Atenção!", "Sem dados para finalizar a chamada!");
                     return;
                 }
 
@@ -163,24 +152,8 @@ public class ColetorDadosPage extends AppCompatActivity {
     //MÉTODO PARA FINALIZAR CHAMADA
     private void finalizarChamada() {
 
-        //INICIALIZANDO OBJETO GSON
-        Gson gson = new Gson();
-
-        //RESGATANDO EMAIL DO USUÁRIO LOGADO
-        String emailUser = auth.getCurrentUser().getEmail().toString();
-
-        //FORMANDO NOME DO ARQUIVO A SER SALVO
-        String nomeArquivo = arq.lerArquivo("disciplina.txt", ColetorDadosPage.this, emailUser) + ".json";
-
-        //PEGANDO STRING EM FORMATO JSON
-        String json = gson.toJson(ras);
-
-        //SALVANDO O ARQUIVO
-        arq.gravarArquivo(nomeArquivo, json, ColetorDadosPage.this, emailUser);
-
-        //NOTIFICANDO O USUÁRIO
-        NotificaUser.alertaToast(ColetorDadosPage.this,"Chamada Finalizada!");
-
+        //MÉTODO PARA SALVAR
+        new Ra().salvarArrayRa(this, ras);
         //VOLTANDO A PÁGINA ANTERIOR
         voltarPaginaColetor();
     }
@@ -189,17 +162,6 @@ public class ColetorDadosPage extends AppCompatActivity {
     private void voltarPaginaColetor() {
         Intent i = new Intent(this, ColetorPage.class);
         startActivity(i);
-    }
-
-    //MÉTODO DE INICIALIZAÇÃO DO SCANNER
-    private void scannerStart(){
-        //ATRIBUTO BARCODE
-        final Activity activity = this;
-
-        IntentIntegrator integrator = new IntentIntegrator(activity);
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES); //INSERINDO TIPO DE LEITURA
-        integrator.setCameraId(0); //USAR APENAS A CAMERA TRASEIRA DO DISPOSITIVO.
-        integrator.initiateScan();
     }
 
     //MÉTODO SOBRESCRITO ONDE ANALISA A CAPTURA DO CÓDIGO DE BARRA PELO LEITOR
@@ -216,7 +178,7 @@ public class ColetorDadosPage extends AppCompatActivity {
                 NotificaUser.alertaSonoro(ColetorDadosPage.this);
 
                 //CRIANDO ALERTA PARA SALVAR RA
-                new AlertDialog.Builder(ColetorDadosPage.this)
+                new AlertDialog.Builder(this)
                         .setTitle("Confirmação")
                         .setMessage("Deseja salvar o RA: " + result.getContents() + "?")
                         .setPositiveButton("CONFIRMAR",
@@ -226,7 +188,7 @@ public class ColetorDadosPage extends AppCompatActivity {
                                         //CHAMANDO MÉTODO PARA SALVAR RA NO ARQUIVO JSON
                                         salvarRa(result.getContents());
                                         //INICIALIZANDO SCANNER
-                                        scannerStart();
+                                        HardwareAccess.scannerStart(ColetorDadosPage.this);
                                     }
                                 })
                         .setNegativeButton("CANCELAR", null)
@@ -242,24 +204,16 @@ public class ColetorDadosPage extends AppCompatActivity {
         }
     }
 
-    //MÉTODO PARA SALVAR RA NO ARQUIVO JSON
+    //MÉTODO PARA SALVAR RA
     private void salvarRa(final String codigo){
-
         //CASO A STRING NÃO TENHA CONTEUDO, RETORNA ALERTA AO USUÁRIO
         if(codigo.isEmpty()){
             NotificaUser.alertaToast(ColetorDadosPage.this, "Informe o RA!");
             return;
         }
 
-        //INSTANCIANDO OBJETO PARA SALVAR NO ARRAY RAS
-        Ra r = new Ra();
-
-        //SALVANDO INFORMAÇÕES NO OBJETO
-        r.setData(new SimpleDateFormat("dd/MM/yyyy/-hh-mm-ss").format(date));
-        r.setRa(codigo);
-
-        //INSERINDO NO ARRAYLIST
-        ras.add(r);
+        //SALVAR CÓDIGO
+        ras.add(new Ra().salvarRa(codigo));
 
         //NOTIFICANDO O USUÁRIO
         NotificaUser.alertaToast(ColetorDadosPage.this, "Salvo com Sucesso!");

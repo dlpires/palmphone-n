@@ -159,8 +159,7 @@ public class CadastroPage extends AppCompatActivity {
 
     //MÉTODO QUE ABRE A JANELA PARA ESCOLHER AS DISCIPLINAS
     private void escolherDisciplina(){
-        //ARMAZENAR OS ITENS ARMAZENADOS
-        AlertDialog show = new AlertDialog.Builder(CadastroPage.this)
+        new AlertDialog.Builder(this)
                 .setTitle("Selecione as Disciplinas:")
                 .setMultiChoiceItems(disciplinas, b, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
@@ -179,7 +178,7 @@ public class CadastroPage extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                professor.setDisciplinas(disc);
+                                professor.setDisciplinas(NotificaUser.getArrayList());
                             }
                         })
                 .setNegativeButton("CANCELAR", null)

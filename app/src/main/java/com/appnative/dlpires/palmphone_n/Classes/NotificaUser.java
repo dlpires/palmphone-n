@@ -1,5 +1,6 @@
 package com.appnative.dlpires.palmphone_n.Classes;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -8,10 +9,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.appnative.dlpires.palmphone_n.Activity.ColetorDadosPage;
 import com.appnative.dlpires.palmphone_n.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by root on 13/01/18.
@@ -21,6 +24,36 @@ public class NotificaUser {
 
     //Popup de Loading
     private static ProgressDialog mProgressDialog;
+
+    //OUTROS ATRIBUTOS ESTÁTICOS
+    private static boolean bool;
+    private static boolean [] bList;
+    private static ArrayList<String> arrayList = new ArrayList<>();
+
+    //GETTERS E SETTERS
+    public static boolean[] getbList() {
+        return bList;
+    }
+
+    public static void setbList(boolean[] bList) {
+        NotificaUser.bList = bList;
+    }
+
+    public static ArrayList<String> getArrayList() {
+        return arrayList;
+    }
+
+    public static void setArrayList(ArrayList<String> arrayList) {
+        NotificaUser.arrayList = arrayList;
+    }
+
+    public static boolean isBool() {
+        return bool;
+    }
+
+    public static void setBool(boolean bool) {
+        NotificaUser.bool = bool;
+    }
 
     //MÉTODO PARA ALERTA SONORO
     public static void alertaSonoro(Activity a){
@@ -63,7 +96,7 @@ public class NotificaUser {
     }
 
     //MÉTODO DE CAIXA DE DIALOGO SIMPLES
-    public static void alertaCaixaDialogo(Context context, String title, String msg){
+    public static void alertaCaixaDialogoSimple(Context context, String title, String msg){
         new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(msg)
@@ -72,7 +105,7 @@ public class NotificaUser {
     }
 
     //MÉTODO DE CAIXA DE DIALOGO SIMPLES COM EVENTO DE ABRIR ACTIVITIES
-    public static void alertaCaixaDialogo(final Context context, String title, String msg, final Class c){
+    public static void alertaCaixaDialogoOk(final Context context, String title, String msg, final Class c){
         new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(msg)

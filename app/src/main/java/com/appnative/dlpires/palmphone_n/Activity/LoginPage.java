@@ -13,13 +13,13 @@ import android.widget.EditText;
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
 import com.appnative.dlpires.palmphone_n.Classes.Professor;
 import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
-import com.appnative.dlpires.palmphone_n.DAO.CrudFirebase;
+import com.appnative.dlpires.palmphone_n.DAO.FirebaseAuthDAO;
+import com.appnative.dlpires.palmphone_n.DAO.FirebaseDatabaseDAO;
 import com.appnative.dlpires.palmphone_n.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 
 /**
@@ -37,11 +37,6 @@ public class LoginPage extends AppCompatActivity {
     //REFERENCIA PARA AS INSTANCIAS DE OBJETOS
     private Professor professor;
 
-    //ATRIBUTOS PARA O FIREBASE
-    private FirebaseAuth auth;
-
-    //REFERENCIA CRUD
-    private CrudFirebase crud;
 
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override
@@ -53,22 +48,16 @@ public class LoginPage extends AppCompatActivity {
         //INSTANCIANDO OBJETO
         professor = new Professor();
 
-        //INCIACIALIZANDO CRUD
-        crud = new CrudFirebase(professor);
-
-        //PUXANDO INSTANCIA UNICA DE AUTENTICAÇÃO DO FIREBASE
-        auth = ConnectFirebase.getFirebaseAuth();
-
         //INICIANDO TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarLogin);
         setSupportActionBar(toolbar);
 
         //VERIFICA SE USUÁRIO JÁ ESTA LOGADO NO APP, ONDE SE VERDADEIRO, ENTRA NA PAGINA DE MENU DIRETAMENTE, E CASO CONTRARIO ELE INSTANCIA
         //OS EDITTEXT DE LOGIN E SENHA
-        if (crud.usuarioLogado()){
+        if (FirebaseAuthDAO.usuarioLogado()){
 
             //SALVANDO INFORMAÇÕES DO USUÁRIO LOGADO
-            crud.infUserLogado(auth.getCurrentUser().getUid(), LoginPage.this);
+            FirebaseDatabaseDAO.infUserLogado(LoginPage.this);
             Intent intent = new Intent(LoginPage.this, MenuPage.class);
             startActivity(intent);
         }
@@ -102,27 +91,12 @@ public class LoginPage extends AppCompatActivity {
             return;
         }
 
-        //MOSTRANDO BARRA DE PROGRESSO (LOADING)
-        NotificaUser.showProgressDialog(LoginPage.this);
+        //MÉTODO PARA LOGIN NO SISTEMA
+        if(professor.login(this)){
+            professor.createJson(this);
+            abrirTelaPrincipal();
+        }
 
-        //CHAMANDO MÉTODO DE AUTENTICAÇÃO DO FIREBASE, PASSANDO AS INFORMAÇÕES CONTIDAS NO OBJETO
-        auth.signInWithEmailAndPassword(professor.getEmailProf(), professor.getSenhaProf()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                //CASO A REQUISIÇÃO FOR VALIDADA, MOSTRAR TELA PRINCIPAL
-                if(task.isSuccessful()){
-                    //SALVANDO INFORMAÇÕES DO USUÁRIO LOGADO
-                    crud.infUserLogado(auth.getCurrentUser().getUid(), LoginPage.this);
-                    abrirTelaPrincipal();
-                }
-                //CASO CONTRARIO, MOSTRA MENSAGEM AO USUÁRIO
-                else{
-                    NotificaUser.alertaCaixaDialogo(LoginPage.this,"Falha no Login!" ,"Usuário ou Senha Incorreta!");
-                }
-                //FECHANDO BARRA DE PROGRESSO (LOADING)
-                NotificaUser.hideProgressDialog();
-            }
-        });
     }
 
     //MÉTODO PARA ABRIR TELA PRINCIPAL
