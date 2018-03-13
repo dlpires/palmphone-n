@@ -65,6 +65,9 @@ public class FirebaseDatabaseDAO {
     //MÉTODO PARA INSERIR INFORMAÇÕES DO USUÁRIO NO BANCO DE DADOS
     public static void insereUsuario(Context context, Professor professor){
         try{
+            //INSERINDO URL DA IMAGEM DE PERFIL NA VARIAVEL ESTATICA
+            FirebaseStorageDAO.readUrlFotoPerfil(auth.getCurrentUser().getUid(), context);
+            professor.setUrl(FirebaseStorageDAO.getString());
             //INSERINDO DADOS NO NÓ PROFESSOR
             databaseReference.child("professor").child(auth.getCurrentUser().getUid())
                     .setValue(professor);//PUXANDO A CHAVE PRIMARIA E INSERINDO USUARIO

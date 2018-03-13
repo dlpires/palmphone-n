@@ -21,34 +21,33 @@ import com.squareup.picasso.Picasso;
 //CLASSE QUE REALIZA TODOS OS MÉTODOS DE ACESSO PARA O STORAGE DO FAIREBASE
 public class FirebaseStorageDAO {
 
+    //ATRIBUTOS NECESSÁRIOS
+    private static String string;
+
     //REFERENCIAS DE OBJETOS
     private static FirebaseStorage storage = ConnectFirebase.getFirebaseStorage();
     private static StorageReference reference = ConnectFirebase.getStorageReference();
     //ADQUIRINDO USUÁRIO
     private static FirebaseAuth auth = ConnectFirebase.getFirebaseAuth();
 
+
+    //GETTERS E SETTERS
+    public static String getString() {
+        return string;
+    }
+
+    public static void setString(String string) {
+        FirebaseStorageDAO.string = string;
+    }
+
     //MÉTODO PARA BUSCAR E MOSTRAR IMAGEM DO PERFIL DO USUÁRIO
-    public static void carregaImagemPerfilUser(final ImageView imageView, final Context context){
+    public static void carregaImagemPerfilUser(final Context context, final ImageView imageView){
 
         //PEGANDO REFERENCIA DO ARQUIVO QUE SERÁ MOSTRADO, ONDE O NOME DESTE SE BASEIA NO UID DO USUÁRIO QUE FOI CADASTRADO
         StorageReference referenciaUser = reference.child("fotoPerfilProfessor/" + auth.getCurrentUser().getUid() + ".jpg");
 
-        //CASO USUÁRIO NÃO POSSUA IMAGEM, SERÁ CARREGADA A IMAGEM PADRÃO
-        StorageReference referenciaPadrao = reference.child("fotoPerfilProfessor/naodisponivel.png");
-
-        //REFERENCIA UTILIZADA
-        StorageReference imagemReferencia;
-
-        //VERIFICANDO SE USUÁRIO POSSUI IMAGEM OU NÃO
-        if (referenciaUser.getDownloadUrl().isSuccessful()){
-            imagemReferencia = referenciaUser;
-        }
-        else{
-            imagemReferencia = referenciaPadrao;
-        }
-
         //EXECUTANDO MÉTODO DE REFERENCIA PARA BUSCAR OS DADOS NO FIREBASE
-        imagemReferencia.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        referenciaUser.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             //MÉTODO QUE EXECUTA A AÇÃO DE QUANDO FOI BEM SUCEDIDA A BUSCA, QUE NO CASO ELE UTILIZADO DA BIBLIOTECA DO PICASSO
             //PARA INSERIR NO IMAGEVIEW A IMAGEM RESGATADA
             @Override
@@ -59,7 +58,23 @@ public class FirebaseStorageDAO {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                NotificaUser.alertaToast(context, "Falha ao carregar a imagem de perfil!");
+                //CASO USUÁRIO NÃO POSSUA IMAGEM, SERÁ CARREGADA A IMAGEM PADRÃO
+                StorageReference referenciaPadrao = reference.child("fotoPerfilProfessor/naodisponivel.png");
+
+                referenciaPadrao.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    //MÉTODO QUE EXECUTA A AÇÃO DE QUANDO FOI BEM SUCEDIDA A BUSCA, QUE NO CASO ELE UTILIZADO DA BIBLIOTECA DO PICASSO
+                    //PARA INSERIR NO IMAGEVIEW A IMAGEM RESGATADA
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.with(context).load(uri.toString()).resize(200, 200).centerCrop().into(imageView);
+                    }
+                    //NO CASO DE FALHA NA CONEXÃO, ELE NOTIFICA AO USUÁRIO DO ERRO ATRAVÉS DE UM TOAST
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        NotificaUser.alertaToast(context, "Falha ao carregar a imagem!");
+                    }
+                });
             }
         });
 
@@ -87,8 +102,30 @@ public class FirebaseStorageDAO {
         });
     }
 
-    //MÉTODO PARA PEGAR URL DE IMAGEM
+    //MÉTODO PARA LER URL DO USUÁRIO
+    public static void readUrlFotoPerfil(String nomeImagem, final Context context){
+        //PEGANDO REFERENCIA DO ARQUIVO QUE SERÁ MOSTRADO, ONDE O NOME DESTE SE BASEIA NO UID DO USUÁRIO QUE FOI CADASTRADO
+        StorageReference imagemReferencia = reference.child("fotoPerfilProfessor/" + nomeImagem + ".jpg");
 
+        //EXECUTANDO MÉTODO DE REFERENCIA PARA BUSCAR OS DADOS NO FIREBASE
+        imagemReferencia.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            //MÉTODO QUE EXECUTA A AÇÃO DE QUANDO FOI BEM SUCEDIDA A BUSCA, QUE NO CASO ELE UTILIZADO DA BIBLIOTECA DO PICASSO
+            //PARA INSERIR NO IMAGEVIEW A IMAGEM RESGATADA
+            @Override
+            public void onSuccess(Uri uri) {
+                //ADQUIRINDO URL IMAGEM DO USUÁRIO
+                setString(uri.toString());
+            }
+            //NO CASO DE FALHA NA CONEXÃO, ELE NOTIFICA AO USUÁRIO DO ERRO ATRAVÉS DE UM TOAST
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                NotificaUser.alertaToast(context, "Imagem não foi carregada!");
+            }
+        });
 
-
+        if(imagemReferencia.getDownloadUrl().isSuccessful()){
+            FirebaseStorageDAO.readUrlFotoPerfil("naodisponivel", context);
+        }
+    }
 }

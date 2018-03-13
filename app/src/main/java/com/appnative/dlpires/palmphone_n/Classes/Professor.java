@@ -11,6 +11,7 @@ import com.appnative.dlpires.palmphone_n.DAO.FirebaseStorageDAO;
 import com.appnative.dlpires.palmphone_n.DAO.ManipulaArquivo;
 import com.google.firebase.database.Exclude;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,7 +151,7 @@ public class Professor {
 
     //MÉTODO PARA RESGATAR IMAGEM DE PERFIL
     public void readImgPerfil(Context context, ImageView imageView){
-        FirebaseStorageDAO.carregaImagemPerfilUser(imageView, context);
+        FirebaseStorageDAO.carregaImagemPerfilUser(context, imageView);
     }
 
 

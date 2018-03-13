@@ -178,7 +178,7 @@ public class CadastroPage extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                professor.setDisciplinas(NotificaUser.getArrayList());
+                                professor.setDisciplinas(disc);
                             }
                         })
                 .setNegativeButton("CANCELAR", null)
