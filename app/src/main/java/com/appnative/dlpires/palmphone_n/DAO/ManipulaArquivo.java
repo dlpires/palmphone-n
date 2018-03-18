@@ -1,6 +1,7 @@
 package com.appnative.dlpires.palmphone_n.DAO;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,6 +48,7 @@ public class ManipulaArquivo {
     }
 
     //MÉTODO PARA LER ARQUIVO
+    @NonNull
     public static String lerArquivo(Context context){
         //BUSCANDO ARQUIVO
         File root = new File(context.getFilesDir(), auth.getCurrentUser().getEmail());
@@ -76,6 +78,7 @@ public class ManipulaArquivo {
     }
 
     //MÉTODO PARA LER ARQUIVO (SOBRESCRITA)
+    @NonNull
     public static String lerArquivo(String nomeArquivo, Context context){
         //BUSCANDO ARQUIVO
         File root = new File(context.getFilesDir(), auth.getCurrentUser().getEmail());
@@ -126,7 +129,7 @@ public class ManipulaArquivo {
         if(!root.exists()) //VERIFICANDO SE A PASTA EXISTE
             return false;
 
-        if(root.listFiles().length <= 1) //VERIFICANDO SE EXISTE ARQUIVOS DE CHAMADA NA PASTA
+        if(root.listFiles().length <= 2) //VERIFICANDO SE EXISTE ARQUIVOS DE CHAMADA NA PASTA
             return false;
 
         return true;

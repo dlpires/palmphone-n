@@ -53,6 +53,8 @@ public class FirebaseStorageDAO {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.with(context).load(uri.toString()).resize(200, 200).centerCrop().into(imageView);
+                //FECHANDO BARRA DE PROGRESSO
+                NotificaUser.hideProgressDialog();
             }
             //NO CASO DE FALHA NA CONEXÃO, ELE NOTIFICA AO USUÁRIO DO ERRO ATRAVÉS DE UM TOAST
         }).addOnFailureListener(new OnFailureListener() {
@@ -75,11 +77,11 @@ public class FirebaseStorageDAO {
                         NotificaUser.alertaToast(context, "Falha ao carregar a imagem!");
                     }
                 });
+
+                //FECHANDO BARRA DE PROGRESSO
+                NotificaUser.hideProgressDialog();
             }
         });
-
-        //FECHANDO BARRA DE PROGRESSO
-        NotificaUser.hideProgressDialog();
     }
 
     //MÉTODO PARA FAZER UPLOAD DA FOTO ESCOLHIDA PELO USUÁRIO
@@ -97,7 +99,8 @@ public class FirebaseStorageDAO {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                //SALVANDO URL DA IMAGEM SALVA NO FIREBASE STORAGE
+                ManipulaArquivo.gravarArquivo("linkImgPerfil.txt", taskSnapshot.getDownloadUrl().toString(), context);
             }
         });
     }
@@ -127,5 +130,24 @@ public class FirebaseStorageDAO {
         if(imagemReferencia.getDownloadUrl().isSuccessful()){
             FirebaseStorageDAO.readUrlFotoPerfil("naodisponivel", context);
         }
+    }
+
+    //MÉTODO PARA UPDATE DE IMAGEM
+    public static void updateImagemPerfilUser(final Context context, final Uri imageUri) {
+        reference = FirebaseStorage.getInstance().getReference();
+        StorageReference montarImagemReferencia = reference.child("fotoPerfilProfessor/" + auth.getCurrentUser().getUid() + ".jpg");
+
+        montarImagemReferencia.delete().addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //MESMO NA FALHA ELE TBM CADASTRA A IMAGEM(ONDE NÃO FOI ENCONTRADO O ARQUIVO, SENDO UM USUÁRIO COM A IMAGEM PADRÃO)
+                cadastrarFotoPerfil(context, imageUri);
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                cadastrarFotoPerfil(context, imageUri);
+            }
+        });
     }
 }

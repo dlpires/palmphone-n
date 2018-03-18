@@ -1,6 +1,7 @@
 package com.appnative.dlpires.palmphone_n.DAO;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 
 import com.appnative.dlpires.palmphone_n.Activity.MenuPage;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by root on 11/03/18.
@@ -66,8 +68,11 @@ public class FirebaseDatabaseDAO {
     public static void insereUsuario(Context context, Professor professor){
         try{
             //INSERINDO URL DA IMAGEM DE PERFIL NA VARIAVEL ESTATICA
-            FirebaseStorageDAO.readUrlFotoPerfil(auth.getCurrentUser().getUid(), context);
-            professor.setUrl(FirebaseStorageDAO.getString());
+            professor.setUrl(ManipulaArquivo.lerArquivo("linkImgPerfil.txt", context));
+
+            //APAGANDO O ARQUIVO DA PASTA
+            ManipulaArquivo.apagarArquivo(context, "linkImgPerfil.txt");
+
             //INSERINDO DADOS NO NÓ PROFESSOR
             databaseReference.child("professor").child(auth.getCurrentUser().getUid())
                     .setValue(professor);//PUXANDO A CHAVE PRIMARIA E INSERINDO USUARIO
@@ -93,6 +98,9 @@ public class FirebaseDatabaseDAO {
             }
         }
 
+        //APAGANDO O ARQUIVO DISCIPLINA.TXT
+        ManipulaArquivo.apagarArquivo(context, "disciplina.txt");
+
         NotificaUser.alertaToast(context, "Sincronização bem sucedida!");
 
     }
@@ -108,6 +116,29 @@ public class FirebaseDatabaseDAO {
             databaseReference.child(dataAtual).setValue(chamada);//PUXANDO A CHAVE PRIMARIA E INSERINDO USUARIO NOVO NÓ
         }
         catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //MÉTODO PARA UPDATE DE INFORMAÇÕES DO USUÁRIO
+    public static void updateUser(Context context, Professor professor) {
+        try{
+            //INSERINDO URL DA IMAGEM DE PERFIL NA VARIAVEL ESTATICA
+            professor.setUrl(ManipulaArquivo.lerArquivo("linkImgPerfil.txt", context));
+
+            //INSERINDO INFORMAÇÕES DO OBJETO EM UM MAP
+            Map<String, Object> prof = professor.toMap();
+
+            //FAZENDO UPDATE DE DAOS
+            databaseReference.child("professor").child(auth.getCurrentUser().getUid())
+                    .updateChildren(prof);
+
+            //APAGANDO O ARQUIVO DA PASTA
+            ManipulaArquivo.apagarArquivo(context, "linkImgPerfil.txt");
+
+        }
+        catch(Exception e){
+            NotificaUser.alertaToast(context, "Erro ao Gravar Usuário!");
             e.printStackTrace();
         }
     }

@@ -37,6 +37,9 @@ public class LoginPage extends AppCompatActivity {
     //REFERENCIA PARA AS INSTANCIAS DE OBJETOS
     private Professor professor;
 
+    //INSTANCIAS FIREBASE
+    private FirebaseAuth auth;
+
 
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
     @Override
@@ -47,6 +50,9 @@ public class LoginPage extends AppCompatActivity {
 
         //INSTANCIANDO OBJETO
         professor = new Professor();
+
+        //INSTANCIAS FIREBASE
+        auth = ConnectFirebase.getFirebaseAuth();
 
         //INICIANDO TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarLogin);
@@ -92,10 +98,34 @@ public class LoginPage extends AppCompatActivity {
         }
 
         //MÉTODO PARA LOGIN NO SISTEMA
-        if(professor.login(this)){
-            professor.createJson(this);
+
+        //MOSTRANDO BARRA DE PROGRESSO (LOADING)
+        NotificaUser.showProgressDialog(this);
+
+        //CHAMANDO MÉTODO DE AUTENTICAÇÃO DO FIREBASE, PASSANDO AS INFORMAÇÕES CONTIDAS NO OBJETO (E RETORNANDO SE FOI REALIZADO OU NÃO)
+
+        auth.signInWithEmailAndPassword(professor.getEmailProf(), professor.getSenhaProf()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                //CASO A REQUISIÇÃO FOR VALIDADA, MOSTRAR TELA PRINCIPAL
+                if(task.isSuccessful()){
+                    //SALVANDO INFORMAÇÕES DO USUÁRIO LOGADO
+                    FirebaseDatabaseDAO.infUserLogado(LoginPage.this);
+                    abrirTelaPrincipal();
+                }
+                //CASO CONTRARIO, MOSTRA MENSAGEM AO USUÁRIO
+                else{
+                    NotificaUser.alertaCaixaDialogoSimple(LoginPage.this,"Falha no Login!" ,"Usuário ou Senha Incorreta!");
+                }
+                //FECHANDO BARRA DE PROGRESSO (LOADING)
+                NotificaUser.hideProgressDialog();
+            }
+        });
+
+        //ALTERNATIVA NÃO FINALIZADA
+        /*if(professor.login(this)){
             abrirTelaPrincipal();
-        }
+        }*/
 
     }
 

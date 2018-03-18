@@ -36,7 +36,8 @@
         <activity android:name=".Activity.ColetorDadosPage" />
 
         <!-- Cadastro de Usuario -->
-        <activity android:name=".Activity.CadastroPage"></activity>
+        <activity android:name=".Activity.CadastroPage" />
+        <activity android:name=".Activity.EditarUserPage"></activity>
     </application>
 
 </manifest>

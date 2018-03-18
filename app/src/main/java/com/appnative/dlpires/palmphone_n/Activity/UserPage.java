@@ -2,22 +2,18 @@ package com.appnative.dlpires.palmphone_n.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
 import com.appnative.dlpires.palmphone_n.Classes.Professor;
-import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
 import com.appnative.dlpires.palmphone_n.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 
 /**
  * Created by dlpires on 28/07/17.
@@ -32,6 +28,7 @@ public class UserPage extends AppCompatActivity{
     private EditText nome;
     private EditText rg;
     private EditText dtNasc;
+    private FloatingActionButton btnEditar;
 
     private Professor professor;
 
@@ -51,6 +48,7 @@ public class UserPage extends AppCompatActivity{
         nome = (EditText) findViewById(R.id.nameUser);
         rg = (EditText) findViewById(R.id.rg);
         dtNasc = (EditText) findViewById(R.id.dtNasc);
+        btnEditar = (FloatingActionButton) findViewById(R.id.buttonEditar);
 
         //INICIALIZAÇÃO OBJETOS
         professor = new Professor();
@@ -61,6 +59,21 @@ public class UserPage extends AppCompatActivity{
         //MÉTODOS CHAMADOS
         carregaInfoUser();
         carregaImagem();
+
+        //CHAMANDO TELA DE EDITAR
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                telaEditar();
+            }
+        });
+    }
+
+    //INVOCANDO TELA DE EDITAR PERFIL
+    private void telaEditar() {
+        Intent intent = new Intent(this, EditarUserPage.class);
+        startActivity(intent);
+        finish(); // Finaliza a Activity atual
     }
 
 

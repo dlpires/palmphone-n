@@ -27,23 +27,11 @@ public class FirebaseAuthDAO {
     private static FirebaseAuth auth = ConnectFirebase.getFirebaseAuth();
     private static ManipulaArquivo arq = new ManipulaArquivo();
 
-    //BOOLEANO PARA RETORNO DE MÉTODOS DO TIPO BOOLEAN
-    private static boolean b;
-
-    public static boolean isB() {
-        return b;
-    }
-
-    public static void setB(boolean b) {
-        FirebaseAuthDAO.b = b;
-    }
-
     //MÉTODO PARA CADASTRO DE USUÁRIO
     public static void createUser(final Context context, final Uri image, final Professor professor){
         //BARRA DE PROGRESSO INICIADAS
         NotificaUser.showProgressDialog(context);
 
-        auth = FirebaseAuth.getInstance();
         auth.createUserWithEmailAndPassword(professor.getEmailProf(), professor.getSenhaProf()).
                 addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -96,7 +84,8 @@ public class FirebaseAuthDAO {
         //MOSTRANDO BARRA DE PROGRESSO (LOADING)
         NotificaUser.showProgressDialog(context);
 
-        //CHAMANDO MÉTODO DE AUTENTICAÇÃO DO FIREBASE, PASSANDO AS INFORMAÇÕES CONTIDAS NO OBJETO
+        //CHAMANDO MÉTODO DE AUTENTICAÇÃO DO FIREBASE, PASSANDO AS INFORMAÇÕES CONTIDAS NO OBJETO (E RETORNANDO SE FOI REALIZADO OU NÃO)
+
         auth.signInWithEmailAndPassword(professor.getEmailProf(), professor.getSenhaProf()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -104,19 +93,17 @@ public class FirebaseAuthDAO {
                 if(task.isSuccessful()){
                     //SALVANDO INFORMAÇÕES DO USUÁRIO LOGADO
                     FirebaseDatabaseDAO.infUserLogado(context);
-                    setB(true);
                 }
                 //CASO CONTRARIO, MOSTRA MENSAGEM AO USUÁRIO
                 else{
                     NotificaUser.alertaCaixaDialogoSimple(context,"Falha no Login!" ,"Usuário ou Senha Incorreta!");
-                    setB(false);
                 }
                 //FECHANDO BARRA DE PROGRESSO (LOADING)
                 NotificaUser.hideProgressDialog();
             }
         });
 
-        return isB();
+        return auth.signInWithEmailAndPassword(professor.getEmailProf(), professor.getSenhaProf()).isComplete();
     }
 
     //MÉTODO PARA SAIR DO SISTEMA

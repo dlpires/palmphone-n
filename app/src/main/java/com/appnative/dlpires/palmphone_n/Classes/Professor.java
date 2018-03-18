@@ -4,17 +4,18 @@ import android.content.Context;
 import android.net.Uri;
 import android.widget.ImageView;
 
-import com.appnative.dlpires.palmphone_n.Activity.ColetorPage;
+import com.appnative.dlpires.palmphone_n.Activity.MenuPage;
 import com.appnative.dlpires.palmphone_n.DAO.FirebaseAuthDAO;
 import com.appnative.dlpires.palmphone_n.DAO.FirebaseDatabaseDAO;
 import com.appnative.dlpires.palmphone_n.DAO.FirebaseStorageDAO;
 import com.appnative.dlpires.palmphone_n.DAO.ManipulaArquivo;
 import com.google.firebase.database.Exclude;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by root on 14/01/18.
@@ -106,6 +107,18 @@ public class Professor {
         this.disciplinas = disciplinas;
     }
 
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("nomeProf", nomeProf);
+        result.put("rgProf", rgProf);
+        result.put("dataNascProf", dataNascProf);
+        result.put("url", url);
+
+        return result;
+    }
+
+
 
     //MÉTODO PARA CADASTRAR USUÁRIO
     public void create(Context context, Uri imageUri){
@@ -142,11 +155,9 @@ public class Professor {
     }
 
     //MÉTODO PARA VALIDAR LOGIN NO SISTEMA
-    public boolean login(Context context){
-        if(FirebaseAuthDAO.loginUser(this, context)){
-            return true;
-        }
-        return false;
+    public boolean login(Context context) {
+        //FAZENDO A VERIFICAÇÃO DE LOGIN E RETORNANDO AO USUÁRIO
+        return FirebaseAuthDAO.loginUser(this, context);
     }
 
     //MÉTODO PARA RESGATAR IMAGEM DE PERFIL
@@ -154,5 +165,24 @@ public class Professor {
         FirebaseStorageDAO.carregaImagemPerfilUser(context, imageView);
     }
 
+    public void update(Context context, Uri imageUri) {
+        //MÉTODOS DE CADASTRO
+        //CASO TENHA ALGUMA URI, REALIZAR MÉTODO DE SALVAR A NOVA IMAGEM
+        if(imageUri != null){
+            FirebaseStorageDAO.updateImagemPerfilUser(context, imageUri);
+        }
 
+        try{
+            FirebaseDatabaseDAO.updateUser(context, this);
+            //PUXANDO AS NOVAS INFORMAÇÕES PARA O ARQUIVO JSON
+            createJson(context);
+
+            //NOTIFICANDO O USUÁRIO E RETORNANDO A TELA DE MENU
+            NotificaUser.alertaCaixaDialogoOk(context, "Atualização Concluída!", "Dados atualizados com sucesso!", MenuPage.class);
+        }
+        catch (Exception e){
+            //INFORMANDO ERRO AO USUÁRIO
+            NotificaUser.alertaCaixaDialogoSimple(context, "Erro!", "Falha ao atualizar dados!!");
+        }
+    }
 }

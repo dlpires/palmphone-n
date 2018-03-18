@@ -86,7 +86,7 @@ public class ColetorDadosPage extends AppCompatActivity {
                 //CRIANDO ALERTA PARA SALVAR RA
                 new AlertDialog.Builder(ColetorDadosPage.this)
                         .setTitle("Confirmação")
-                        .setMessage("Deseja finalizar a chamada?")
+                        .setMessage("Deseja salvar o RA: "+ ra.getText().toString() +"?")
                         .setPositiveButton("CONFIRMAR",
                                 new DialogInterface.OnClickListener() {
                                     @Override
