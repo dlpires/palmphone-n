@@ -13,29 +13,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.appnative.dlpires.palmphone_n.Classes.Disciplina;
 import com.appnative.dlpires.palmphone_n.Classes.NotificaUser;
 import com.appnative.dlpires.palmphone_n.Classes.Professor;
-import com.appnative.dlpires.palmphone_n.Classes.Ra;
 import com.appnative.dlpires.palmphone_n.DAO.ManipulaArquivo;
 import com.appnative.dlpires.palmphone_n.DAO.ConnectFirebase;
-import com.appnative.dlpires.palmphone_n.DAO.CrudFirebase;
 import com.appnative.dlpires.palmphone_n.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by dlpires on 28/07/17.
@@ -49,16 +36,7 @@ public class ColetorPage extends AppCompatActivity {
     private Spinner spinnerAula;
     private Spinner spinnerDisciplinas;
 
-    //REFERENCIA FIREBASE
-    private FirebaseAuth auth;
-    private DatabaseReference databaseReference;
-
-    //REFERENCIA CRUD PARA UTLIZAÇÃO DO FIREBASE
-    private CrudFirebase crud;
-
     //OUTRAS REFERENCIAS
-    private ManipulaArquivo arq;
-    private Gson gson;
     private Professor professor;
 
     //MÉTODO SOBRESCRITO DA ACTIVITY, PARA INICIALIZAÇÃO DOS COMPONENTES E FUNÇÕES DA TELA
@@ -77,16 +55,8 @@ public class ColetorPage extends AppCompatActivity {
         spinnerAula = (Spinner) findViewById(R.id.spinnerAula);
         spinnerDisciplinas = (Spinner) findViewById(R.id.spinnerDisciplina);
 
-        //INICIALIZANDO OBJETOS FIREBASE
-        auth = ConnectFirebase.getFirebaseAuth();
-        databaseReference = ConnectFirebase.getFirebaseDbRef();
-
-        //INICIALIZANDO OBJETO CRUD
-        crud = new CrudFirebase();
-
-        //INICIALIZANDO OBJETOS
-        arq = new ManipulaArquivo();
-        gson = new Gson();
+        //INICIALIZANDO OUTROS OBJETOS
+        professor = new Professor();
 
         //CHAMANDO MÉTODOS DA CLASSE
         carregaInfoUser();
@@ -110,13 +80,16 @@ public class ColetorPage extends AppCompatActivity {
 
         return true;
     }
+
     //MÉTODO ONCLICK DO COLETAR DADOS, ONDE INICIALIZA A ACTIVITY RESPONSÁVEL
     public void pageColeta(View v){
         if(!validateForm()){
             return;
         }
-        //SALVANDO DISCIPLINA SELECIONADA NO SPINNER
-        arq.gravarArquivo("disciplina.txt", spinnerDisciplinas.getSelectedItem().toString(), ColetorPage.this, auth.getCurrentUser().getEmail().toString());
+
+        //SALVANDO INFORMAÇÃO DA DISCIPLINA SELECIONADA EM ARQUIVO
+        professor.setDisciplinaArq(spinnerDisciplinas.getSelectedItem().toString(),this);
+
         Intent i = new Intent(this, ColetorDadosPage.class);
         startActivity(i);
     }
@@ -137,6 +110,24 @@ public class ColetorPage extends AppCompatActivity {
     //MÉTODO QUE CHAMA AS INFORMAÇÕES DO USUÁRIO
     public void carregaInfoUser() {
 
+        carregaSpinnerAula();
+
+        //MÉTODO PARA LER O JSON ARMAZENADO INTERNAMENTE
+        Professor prof = professor.readJson(this);
+
+        //INFORMANDO NOME DO PROFESSOR
+        nomeUser.setText(prof.getNomeProf());
+
+        ArrayList<String> disc = new ArrayList<>();
+        //ADICIONANDO HEADER NO SPINNER
+        disc.add("Selecione uma Disciplina:");
+        disc.addAll(prof.getDisciplinas());
+        //PREENCHENDO SPINNER DE DISCIPLINAS
+        preencherSpinner(spinnerDisciplinas, disc);
+    }
+
+    //MÉTODO PARA CARREGAR O SPINNER
+    private void carregaSpinnerAula() {
         //CRIANDO ARRAY LIST DE NUMERO DE AULAS
         ArrayList<String> nAulas = new ArrayList<String>(){
             {
@@ -149,21 +140,6 @@ public class ColetorPage extends AppCompatActivity {
         };
         //CHAMANDO MÉTODO PARA PREENCHER SPINNER
         preencherSpinner(spinnerAula, nAulas);
-
-        //PEGANDO EMAIL DO USUARIO LOGADO
-        String userLogado = auth.getCurrentUser().getUid();
-        String emailUserLogado = auth.getCurrentUser().getEmail();
-
-        String jsonDisc = arq.lerArquivo(userLogado + ".json", ColetorPage.this, emailUserLogado);
-
-        //INSTANCIANDO VALORES
-        //PEGANDO ARRAY COM OS NOMES DAS DISCIPLINAS
-        Professor professor = gson.fromJson(jsonDisc, Professor.class);
-
-        //INFORMANDO NOME DO PROFESSOR
-        nomeUser.setText(professor.getNomeProf());
-
-        preencherSpinner(spinnerDisciplinas, (ArrayList<String>) professor.getDisciplinas());
     }
 
     //MÉTODO PARA PREENCHER SPINNER
