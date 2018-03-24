@@ -250,5 +250,11 @@ public class CadastroPage extends AppCompatActivity {
         return valid;
     }
 
-
+    //MÉTODO DO BOTÃO VOLTAR DO DISPOSITIVO
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, LoginPage.class);
+        startActivity(intent);
+        finish(); // Finaliza a Activity atual
+    }
 }

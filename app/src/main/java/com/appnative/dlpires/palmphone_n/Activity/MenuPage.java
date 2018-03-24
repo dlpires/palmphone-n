@@ -118,6 +118,7 @@ public class MenuPage extends AppCompatActivity {
         professor.createChamada(this, professor.readJson(this));
     }
 
+    //MÉTODO DO BOTÃO VOLTAR DO DISPOSITIVO
     @Override
     public void onBackPressed() {
 

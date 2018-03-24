@@ -188,5 +188,12 @@ public class ColetorPage extends AppCompatActivity {
         spinner.setAdapter(spinnerArrayAdapter);
     }
 
+    //MÉTODO DO BOTÃO VOLTAR DO DISPOSITIVO
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MenuPage.class);
+        startActivity(intent);
+        finish(); // Finaliza a Activity atual
+    }
 
 }

@@ -112,8 +112,7 @@ public class FirebaseDatabaseDAO {
         String dataAtual = new SimpleDateFormat("ddMMyyyyhhmmss").format(date);
 
         try{
-            databaseReference = ConnectFirebase.getFirebaseDbRef().child("chamadas");//CRIA NÓ (TABELA)
-            databaseReference.child(dataAtual).setValue(chamada);//PUXANDO A CHAVE PRIMARIA E INSERINDO USUARIO NOVO NÓ
+            databaseReference.child("chamada").child(dataAtual).setValue(chamada);//PUXANDO A CHAVE PRIMARIA E INSERINDO USUARIO NOVO NÓ
         }
         catch(Exception e){
             e.printStackTrace();

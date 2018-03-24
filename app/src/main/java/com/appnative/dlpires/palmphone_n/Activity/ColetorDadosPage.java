@@ -83,6 +83,13 @@ public class ColetorDadosPage extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //CASO A STRING NÃO TENHA CONTEUDO, RETORNA ALERTA AO USUÁRIO
+                if(ra.getText().toString().isEmpty()){
+                    NotificaUser.alertaToast(ColetorDadosPage.this, "Informe o RA!");
+                    return;
+                }
+
                 //CRIANDO ALERTA PARA SALVAR RA
                 new AlertDialog.Builder(ColetorDadosPage.this)
                         .setTitle("Confirmação")
@@ -206,11 +213,6 @@ public class ColetorDadosPage extends AppCompatActivity {
 
     //MÉTODO PARA SALVAR RA
     private void salvarRa(final String codigo){
-        //CASO A STRING NÃO TENHA CONTEUDO, RETORNA ALERTA AO USUÁRIO
-        if(codigo.isEmpty()){
-            NotificaUser.alertaToast(ColetorDadosPage.this, "Informe o RA!");
-            return;
-        }
 
         //SALVAR CÓDIGO
         ras.add(new Ra().salvarRa(codigo));
@@ -220,5 +222,11 @@ public class ColetorDadosPage extends AppCompatActivity {
 
         //LIMPANDO CAMPO
         ra.setText("");
+    }
+
+    //MÉTODO DO BOTÃO VOLTAR DO DISPOSITIVO
+    @Override
+    public void onBackPressed() {
+
     }
 }

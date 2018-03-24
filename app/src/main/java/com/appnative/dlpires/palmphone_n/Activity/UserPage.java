@@ -111,4 +111,12 @@ public class UserPage extends AppCompatActivity{
 
         return true;
     }
+
+    //MÉTODO DO BOTÃO VOLTAR DO DISPOSITIVO
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MenuPage.class);
+        startActivity(intent);
+        finish(); // Finaliza a Activity atual
+    }
 }
