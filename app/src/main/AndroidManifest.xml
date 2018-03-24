@@ -15,7 +15,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <!-- Pagina de Login (Inicial) -->
-        <activity android:name=".Activity.LoginPage">
+        <activity
+            android:name=".Activity.LoginPage"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,20 +26,31 @@
         </activity>
 
         <!-- Menu Principal -->
-        <activity android:name=".Activity.MenuPage" />
+        <activity
+            android:name=".Activity.MenuPage"
+            android:screenOrientation="portrait" />
 
         <!-- Perfil Usuário -->
-        <activity android:name=".Activity.UserPage" />
+        <activity
+            android:name=".Activity.UserPage"
+            android:screenOrientation="portrait" />
 
         <!-- Página de Opções: Coletor -->
-        <activity android:name=".Activity.ColetorPage" />
+        <activity
+            android:name=".Activity.ColetorPage"
+            android:screenOrientation="portrait" />
 
         <!-- Página de Opções: Coleta de Dados -->
-        <activity android:name=".Activity.ColetorDadosPage" />
+        <activity android:name=".Activity.ColetorDadosPage"
+                android:screenOrientation="portrait"/>
 
         <!-- Cadastro de Usuario -->
-        <activity android:name=".Activity.CadastroPage" />
-        <activity android:name=".Activity.EditarUserPage"></activity>
+        <activity
+            android:name=".Activity.CadastroPage"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activity.EditarUserPage"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
