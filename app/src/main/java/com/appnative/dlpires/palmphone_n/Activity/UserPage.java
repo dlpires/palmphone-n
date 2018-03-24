@@ -26,6 +26,7 @@ public class UserPage extends AppCompatActivity{
     //COMPONENTES TELA
     private ImageView imageView;
     private EditText nome;
+    private EditText email;
     private EditText rg;
     private EditText dtNasc;
     private FloatingActionButton btnEditar;
@@ -46,6 +47,7 @@ public class UserPage extends AppCompatActivity{
         //Inicialização Componentes
         imageView = (ImageView) findViewById(R.id.imageUser);
         nome = (EditText) findViewById(R.id.nameUser);
+        email = (EditText) findViewById(R.id.emailUser);
         rg = (EditText) findViewById(R.id.rg);
         dtNasc = (EditText) findViewById(R.id.dtNasc);
         btnEditar = (FloatingActionButton) findViewById(R.id.buttonEditar);
@@ -83,6 +85,7 @@ public class UserPage extends AppCompatActivity{
 
         //CARREGANDO INFORMAÇÕES USER
         nome.setText(prof.getNomeProf());
+        email.setText(prof.getEmailProf());
         rg.setText(prof.getRgProf());
         dtNasc.setText(prof.getDataNascProf());
     }

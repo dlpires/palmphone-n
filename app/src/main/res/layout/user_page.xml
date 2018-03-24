@@ -49,6 +49,18 @@
         <!--android:hint="Josivaldo da Silva"-->
 
         <EditText
+            android:id="@+id/emailUser"
+            android:layout_width="348dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:editable="false"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black" />
+
+        <EditText
             android:id="@+id/dtNasc"
             android:layout_width="348dp"
             android:layout_height="wrap_content"

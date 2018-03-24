@@ -247,6 +247,12 @@ public class CadastroPage extends AppCompatActivity {
             txtNome.setError(null);
         }
 
+        //VERIFICANDO SE ALGUMA DISCIPLINA FOI CADASTRADA
+        if(professor.getDisciplinas().isEmpty()){
+            NotificaUser.alertaCaixaDialogoSimple(this, "Atenção!", "Selecione no mínimo uma disciplina.");
+            valid = false;
+        }
+
         return valid;
     }
 

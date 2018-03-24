@@ -18,6 +18,7 @@ public class HardwareAccess {
 
         IntentIntegrator integrator = new IntentIntegrator(activity);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES); //INSERINDO TIPO DE LEITURA
+        integrator.setPrompt("Posicione o código de barras sobre a linha vermelha");
         integrator.setCameraId(0); //USAR APENAS A CAMERA TRASEIRA DO DISPOSITIVO.
         integrator.initiateScan();
     }
