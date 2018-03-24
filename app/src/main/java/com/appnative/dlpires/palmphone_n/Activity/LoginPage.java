@@ -164,4 +164,10 @@ public class LoginPage extends AppCompatActivity {
 
         return valid;
     }
+
+    //INUTILIZANDO BOTÃO BACK DO CELULAR
+    @Override
+    public void onBackPressed() {
+
+    }
 }

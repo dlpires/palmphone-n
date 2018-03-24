@@ -117,4 +117,9 @@ public class MenuPage extends AppCompatActivity {
     public void salvandoFirebase() {
         professor.createChamada(this, professor.readJson(this));
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }
