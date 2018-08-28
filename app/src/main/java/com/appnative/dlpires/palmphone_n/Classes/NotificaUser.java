@@ -24,7 +24,6 @@ public class NotificaUser {
     private static ProgressDialog mProgressDialog;
 
     //OUTROS ATRIBUTOS ESTÁTICOS
-    private static boolean bool;
     private static boolean [] bList;
     private static ArrayList<String> arrayList = new ArrayList<>();
 
@@ -43,14 +42,6 @@ public class NotificaUser {
 
     public static void setArrayList(ArrayList<String> arrayList) {
         NotificaUser.arrayList = arrayList;
-    }
-
-    public static boolean isBool() {
-        return bool;
-    }
-
-    public static void setBool(boolean bool) {
-        NotificaUser.bool = bool;
     }
 
     //MÉTODO PARA ALERTA SONORO
