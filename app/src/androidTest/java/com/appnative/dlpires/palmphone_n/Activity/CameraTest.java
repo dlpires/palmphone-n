@@ -1,10 +1,19 @@
 package com.appnative.dlpires.palmphone_n.Activity;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.DataInteraction;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.test.uiautomator.By;
+import android.support.test.uiautomator.UiDevice;
+import android.support.test.uiautomator.UiObject;
+import android.support.test.uiautomator.UiObjectNotFoundException;
+import android.support.test.uiautomator.UiSelector;
+import android.support.test.uiautomator.Until;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +24,8 @@ import com.appnative.dlpires.palmphone_n.R;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,14 +46,67 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertThat;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class CameraTest {
 
+    //VARIAVEIS ESTATICAS PCOM AS INFORMAÇÕES DO TREPN PROFILER
+    private static final String BASIC_SAMPLE_PACKAGE
+            = "com.quicinc.trepn";
+    private static final int LAUNCH_TIMEOUT = 5000;
+    private static final String STRING_TO_BE_TYPED = "Trepn Profiler";
+    //CLASSE PARA UIAUTOMATOR 2
+    private UiDevice mDevice;
+
     //OBJETO DE ACESSO AOS COMPONENTES DO SOFTWARE
     @Rule
     public ActivityTestRule<LoginPage> mActivityTestRule = new ActivityTestRule<>(LoginPage.class);
+
+    //INICIANDO TREPN PROFILER
+    @Before
+    public void startTrepnProfiler() {
+        // INICICIALIZANDO INSTANCIA DO DISPOSITIVO
+        mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+
+        // INICIANDO HOME SCREEN
+        mDevice.pressHome();
+
+        // ESPERANDO PARA ABRIR O APP
+        final String launcherPackage = mDevice.getLauncherPackageName();
+        assertThat(launcherPackage, notNullValue());
+        mDevice.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)),
+                LAUNCH_TIMEOUT);
+
+        // INICIANDO O TREPN
+        Context context = InstrumentationRegistry.getContext();
+        final Intent intent = context.getPackageManager()
+                .getLaunchIntentForPackage(BASIC_SAMPLE_PACKAGE);
+        // LIMPANDO OUTRAS INSTANCIAS DO APP
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+
+        // ESPERANDO O APP ABRIR
+        mDevice.wait(Until.hasObject(By.pkg(BASIC_SAMPLE_PACKAGE).depth(0)),
+                LAUNCH_TIMEOUT);
+
+        try {
+            //CLICANDO NO BOTÃO PROFILE APP
+            mDevice.findObject(new UiSelector()
+                    .text("Profile App")
+                    .className("android.widget.TextView")).click();
+
+            //SELECIONANDO O PALMPHONE
+            mDevice.findObject(new UiSelector()
+                    .text("Palmphone")
+                    .className("android.widget.TextView")).click();
+        } catch (UiObjectNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @Test
     public void cameraTest() {
@@ -210,7 +274,7 @@ public class CameraTest {
         for (int i = 0; i < 10; i++){
             //ESPERA DE 3 SEGUNDOS
             try {
-                Thread.sleep(6000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -292,14 +356,7 @@ public class CameraTest {
 
         //SINCRONIZANDO NA BASE DE DADOS DO SISTEMA
         ViewInteraction appCompatButton8 = onView(
-                allOf(withId(R.id.buttonSync),
-                        childAtPosition(
-                                allOf(withId(R.id.formSync),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                3)),
-                                0),
-                        isDisplayed()));
+                allOf(withId(R.id.buttonSync)));
         appCompatButton8.perform(click());
 
         //CONFIRMANDO SINCRONIZAÇÃO
@@ -311,6 +368,13 @@ public class CameraTest {
                                         0),
                                 3)));
         appCompatButton9.perform(scrollTo(), click());
+
+        //ESPERA DE 3 SEGUNDOS
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //SAINDO DO SISTEMA
         ViewInteraction appCompatButton7 = onView(
@@ -335,12 +399,45 @@ public class CameraTest {
         appCompatButton10.perform(scrollTo(), click());
 
         //ESPERA DE 3 SEGUNDOS
-        try {
+        /*try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
+    }
+
+    @After
+    public void stopTrepnProfiler(){
+        Context context = InstrumentationRegistry.getContext();
+        final Intent intent = context.getPackageManager()
+                .getLaunchIntentForPackage(BASIC_SAMPLE_PACKAGE);
+
+        //ABRINDO APP
+        context.startActivity(intent);
+
+        // ESPERANDO O APP ABRIR
+        //mDevice.wait(Until.hasObject(By.pkg(BASIC_SAMPLE_PACKAGE).depth(0)),
+        //        LAUNCH_TIMEOUT);
+
+        try {
+            //CLICANDO NO BOTÃO PROFILE APP
+            mDevice.findObject(new UiSelector()
+                    .text("Stop Profiling")
+                    .className("android.widget.TextView")).click();
+
+            //SELECIONANDO O PALMPHONE
+            mDevice.findObject(new UiSelector()
+                    .text("Save as .csv")
+                    .className("android.widget.Button")).click();
+
+            //SALVANDO ARQUIVO CSV
+            mDevice.findObject(new UiSelector()
+                    .text("Save")
+                    .className("android.widget.Button")).click();
+        } catch (UiObjectNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private static Matcher<View> childAtPosition(
