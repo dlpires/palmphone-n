@@ -252,7 +252,7 @@ public class CameraTest {
         for (int i = 0; i < 10; i++){
             //ESPERA DE 3 SEGUNDOS
             try {
-                Thread.sleep(3000);
+                Thread.sleep(4000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
