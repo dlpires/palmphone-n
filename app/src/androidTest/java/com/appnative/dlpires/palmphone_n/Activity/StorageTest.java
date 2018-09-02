@@ -10,7 +10,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObject;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
 import android.support.test.uiautomator.Until;
@@ -32,10 +31,8 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -51,7 +48,7 @@ import static org.junit.Assert.assertThat;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CameraTest {
+public class StorageTest {
 
     //VARIAVEIS ESTATICAS PCOM AS INFORMAÇÕES DO TREPN PROFILER
     private static final String BASIC_SAMPLE_PACKAGE
@@ -109,17 +106,17 @@ public class CameraTest {
     }
 
     @Test
-    public void cameraTest() {
+    public void storageTest() {
 
-        //AGUARDANDO 2 SEGUNDOS PARA ABRIR O APLICATIVO
+        //ESPERA DE 2 SEGUNDOS
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        //INSERINDO EMAIL
-        ViewInteraction appCompatEditText1 = onView(
+        //INSERINDO O EMAIL
+        ViewInteraction appCompatEditText7 = onView(
                 allOf(withId(R.id.textEmail),
                         childAtPosition(
                                 childAtPosition(
@@ -127,10 +124,10 @@ public class CameraTest {
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatEditText1.perform(replaceText("loira@email.com"), closeSoftKeyboard());
+        appCompatEditText7.perform(replaceText("loira@email.com"));
 
-        //INSERINDO SENHA
-        ViewInteraction appCompatEditText3 = onView(
+        //INSERINDO SENHA E FECHANDO TECLADO
+        ViewInteraction appCompatEditText9 = onView(
                 allOf(withId(R.id.textSenha),
                         childAtPosition(
                                 childAtPosition(
@@ -138,7 +135,7 @@ public class CameraTest {
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("123456"), closeSoftKeyboard());
+        appCompatEditText9.perform(replaceText("123456"), closeSoftKeyboard());
 
         //CLICANDO NO BOTÃO ENTRAR
         ViewInteraction appCompatButton = onView(
@@ -152,7 +149,7 @@ public class CameraTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        //PARADA DE 4 SEGUNDOS, PARA ESPERAR O LOGIN
+        //ESPERA DE 4 SEGUNDOS = LOGIN
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
@@ -178,7 +175,7 @@ public class CameraTest {
             e.printStackTrace();
         }
 
-        //ABRINDO O SPINNER DE DISCIPLINAS
+        //CLICANDO NO SPINNER DISCIPLINA
         ViewInteraction appCompatSpinner = onView(
                 allOf(withId(R.id.spinnerDisciplina),
                         childAtPosition(
@@ -195,10 +192,10 @@ public class CameraTest {
                         childAtPosition(
                                 withClassName(is("android.widget.FrameLayout")),
                                 0)))
-                .atPosition(2);
+                .atPosition(1);
         appCompatCheckedTextView.perform(click());
 
-        //ABRINDO SPINNER DE NUMERO DE AULAS
+        //CLICANDO NO SPINNER DE AULAS
         ViewInteraction appCompatSpinner2 = onView(
                 allOf(withId(R.id.spinnerAula),
                         childAtPosition(
@@ -215,7 +212,7 @@ public class CameraTest {
                         childAtPosition(
                                 withClassName(is("android.widget.FrameLayout")),
                                 0)))
-                .atPosition(4);
+                .atPosition(2);
         appCompatCheckedTextView2.perform(click());
 
         //CLICANDO NO BOTÃO COLETAR DADOS
@@ -230,35 +227,46 @@ public class CameraTest {
                         isDisplayed()));
         appCompatButton3.perform(click());
 
-        //ESPERA DE 2 SEGUNDOS
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        //CLICANDO NO BOTÃO PARA ABRIR O LEITOR DE CÓDIGO DE BARRAS
-        ViewInteraction floatingActionButton = onView(
-                allOf(withId(R.id.buttonBarcode),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.LinearLayout")),
-                                        2),
-                                0),
-                        isDisplayed()));
-        floatingActionButton.perform(click());
-
-        //LOOP PARA CADASTRAR LER 10 RAs
+        //REALIZANDO 10 CADASTROS
         for (int i = 0; i < 10; i++){
-            //ESPERA DE 3 SEGUNDOS
+
+            //ESPERA DE 2 SEGUNDOS
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //INSERINDO RA
+            ViewInteraction appCompatEditText11 = onView(
+                    allOf(withId(R.id.textRA),
+                            childAtPosition(
+                                    childAtPosition(
+                                            withClassName(is("android.support.design.widget.TextInputLayout")),
+                                            0),
+                                    0),
+                            isDisplayed()));
+            appCompatEditText11.perform(replaceText(Integer.toString(i)));
+
+            //CLICANDO NO BOTÃO SALVAR
+            ViewInteraction appCompatButton4 = onView(
+                    allOf(withId(R.id.buttonRA), withText("SALVAR"),
+                            childAtPosition(
+                                    allOf(withId(R.id.linearLayoutDigRA),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    1),
+                            isDisplayed()));
+            appCompatButton4.perform(click());
+            //ESPERA DE 2 SEGUNDOS
+            try {
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            //CONFIRMANDO LEITURA DE CHAMADA
-            ViewInteraction appCompatButton4 = onView(
+            //CLICANDO EM CONFIRMAR
+            ViewInteraction appCompatButton5 = onView(
                     allOf(withId(android.R.id.button1), withText("CONFIRMAR"),
                             childAtPosition(
                                     allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
@@ -272,22 +280,13 @@ public class CameraTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 3)));*/
-            appCompatButton4.perform(click());
-            //appCompatButton4.perform(scrollTo(), click());
+            appCompatButton5.perform(click());
+            //appCompatButton5.perform(scrollTo(), click());
         }
 
-        //SAINDO DA CAMERA
-        pressBack();
 
-        //ESPERA DE 2 SEGUNDOS
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        //CLICANDO NO BOTÃO FINALIZAR CHAMADA
-        ViewInteraction appCompatButton5 = onView(
+        //CLICANDO EM FINALIZAR CHAMADA
+        ViewInteraction appCompatButton6 = onView(
                 allOf(withId(R.id.buttonFinalizar), withText("FINALIZAR CHAMADA"),
                         childAtPosition(
                                 allOf(withId(R.id.linearLayoutDigRA),
@@ -296,7 +295,7 @@ public class CameraTest {
                                                 1)),
                                 2),
                         isDisplayed()));
-        appCompatButton5.perform(click());
+        appCompatButton6.perform(click());
 
         //ESPERA DE 2 SEGUNDOS
         try {
@@ -305,8 +304,8 @@ public class CameraTest {
             e.printStackTrace();
         }
 
-        //CLICANDO NO BOTÃO CONFIRMAR DO POPUP
-        ViewInteraction appCompatButton6 = onView(
+        //CLICANDO EM CONFIRMAR
+        ViewInteraction appCompatButton7 = onView(
                 allOf(withId(android.R.id.button1), withText("CONFIRMAR"),
                         childAtPosition(
                                 allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
@@ -315,13 +314,13 @@ public class CameraTest {
                                                 3)),
                                 3),
                         isDisplayed()));
-                            /*childAtPosition(
+                        /*childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 3)));*/
-        appCompatButton6.perform(click());
-        //appCompatButton6.perform(scrollTo(), click());
+        appCompatButton7.perform(click());
+        //appCompatButton7.perform(scrollTo(), click());
 
         //ESPERA DE 2 SEGUNDOS
         try {
@@ -329,7 +328,8 @@ public class CameraTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //VOLTANDO PARA A PÁGINA DE PERFIL
+
+        //VOLTANDO NA TELA DE MENU
         ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Navigate up"),
                         childAtPosition(
@@ -366,10 +366,14 @@ public class CameraTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        //CONFIRMANDO SINCRONIZAÇÃO
+        //CONFIRMANDO SYNC
         ViewInteraction appCompatButton9 = onView(
                 allOf(withId(android.R.id.button1), withText("CONFIRMAR"),
+                        /*childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                3)));*/
                         childAtPosition(
                                 allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
                                         childAtPosition(
@@ -377,16 +381,11 @@ public class CameraTest {
                                                 3)),
                                 3),
                         isDisplayed()));
-                            /*childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                3)));*/
-        appCompatButton9.perform(click());
         //appCompatButton9.perform(scrollTo(), click());
+        appCompatButton9.perform(click());
 
-        //SAINDO DO SISTEMA
-        ViewInteraction appCompatButton7 = onView(
+        //CLICANDO NO BOTÃO SAIR
+        ViewInteraction appCompatButton10 = onView(
                 allOf(withId(R.id.buttonSair), withText("Sair"),
                         childAtPosition(
                                 allOf(withId(R.id.formLogout),
@@ -395,7 +394,7 @@ public class CameraTest {
                                                 3)),
                                 0),
                         isDisplayed()));
-        appCompatButton7.perform(click());
+        appCompatButton10.perform(click());
 
         //ESPERA DE 2 SEGUNDOS
         try {
@@ -403,9 +402,8 @@ public class CameraTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         //CONFIRMANDO SAIDA
-        ViewInteraction appCompatButton10 = onView(
+        ViewInteraction appCompatButton11 = onView(
                 allOf(withId(android.R.id.button1), withText("CONFIRMAR"),
                         childAtPosition(
                                 allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
@@ -414,13 +412,13 @@ public class CameraTest {
                                                 3)),
                                 3),
                         isDisplayed()));
-                            /*childAtPosition(
+                        /*childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 3)));*/
-        appCompatButton10.perform(click());
-        //appCompatButton10.perform(scrollTo(), click());
+        appCompatButton11.perform(click());
+        //appCompatButton11.perform(scrollTo(), click());
 
     }
 
