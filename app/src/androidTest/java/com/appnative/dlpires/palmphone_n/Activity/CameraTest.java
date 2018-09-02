@@ -422,6 +422,12 @@ public class CameraTest {
         appCompatButton10.perform(click());
         //appCompatButton10.perform(scrollTo(), click());
 
+        //ESPERA DE 2 SEGUNDOS
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @After
