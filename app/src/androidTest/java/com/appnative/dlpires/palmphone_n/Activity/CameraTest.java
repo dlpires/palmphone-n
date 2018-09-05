@@ -154,7 +154,7 @@ public class CameraTest {
 
         //PARADA DE 4 SEGUNDOS, PARA ESPERAR O LOGIN
         try {
-            Thread.sleep(4000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -330,7 +330,7 @@ public class CameraTest {
             e.printStackTrace();
         }
         //VOLTANDO PARA A PÁGINA DE PERFIL
-        ViewInteraction appCompatImageButton = onView(
+        /*ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Navigate up"),
                         childAtPosition(
                                 allOf(withId(R.id.toolbarColetor),
@@ -339,7 +339,8 @@ public class CameraTest {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatImageButton.perform(click());
+        appCompatImageButton.perform(click());*/
+        pressBack();
 
         //ESPERA DE 2 SEGUNDOS
         try {

@@ -31,6 +31,7 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
@@ -151,7 +152,7 @@ public class StorageTest {
 
         //ESPERA DE 4 SEGUNDOS = LOGIN
         try {
-            Thread.sleep(4000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -268,20 +269,20 @@ public class StorageTest {
             //CLICANDO EM CONFIRMAR
             ViewInteraction appCompatButton5 = onView(
                     allOf(withId(android.R.id.button1), withText("CONFIRMAR"),
-                            childAtPosition(
+                            /*childAtPosition(
                                     allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
                                             childAtPosition(
                                                     withClassName(is("android.widget.LinearLayout")),
                                                     3)),
                                     3),
-                            isDisplayed()));
-                            /*childAtPosition(
+                            isDisplayed()));*/
+                            childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
-                                3)));*/
-            appCompatButton5.perform(click());
-            //appCompatButton5.perform(scrollTo(), click());
+                                3)));
+            //appCompatButton5.perform(click());
+            appCompatButton5.perform(scrollTo(), click());
         }
 
 
@@ -307,20 +308,20 @@ public class StorageTest {
         //CLICANDO EM CONFIRMAR
         ViewInteraction appCompatButton7 = onView(
                 allOf(withId(android.R.id.button1), withText("CONFIRMAR"),
-                        childAtPosition(
+                        /*childAtPosition(
                                 allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
                                         childAtPosition(
                                                 withClassName(is("android.widget.LinearLayout")),
                                                 3)),
                                 3),
-                        isDisplayed()));
-                        /*childAtPosition(
+                        isDisplayed()));*/
+                        childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
-                                3)));*/
-        appCompatButton7.perform(click());
-        //appCompatButton7.perform(scrollTo(), click());
+                                3)));
+        //appCompatButton7.perform(click());
+        appCompatButton7.perform(scrollTo(), click());
 
         //ESPERA DE 2 SEGUNDOS
         try {
@@ -330,7 +331,7 @@ public class StorageTest {
         }
 
         //VOLTANDO NA TELA DE MENU
-        ViewInteraction appCompatImageButton = onView(
+        /*ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Navigate up"),
                         childAtPosition(
                                 allOf(withId(R.id.toolbarColetor),
@@ -339,7 +340,9 @@ public class StorageTest {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatImageButton.perform(click());
+        appCompatImageButton.perform(click());*/
+
+        pressBack();
 
         //ESPERA DE 2 SEGUNDOS
         try {
@@ -369,20 +372,20 @@ public class StorageTest {
         //CONFIRMANDO SYNC
         ViewInteraction appCompatButton9 = onView(
                 allOf(withId(android.R.id.button1), withText("CONFIRMAR"),
-                        /*childAtPosition(
+                        childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
-                                3)));*/
-                        childAtPosition(
+                                3)));
+                        /*childAtPosition(
                                 allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
                                         childAtPosition(
                                                 withClassName(is("android.widget.LinearLayout")),
                                                 3)),
                                 3),
-                        isDisplayed()));
-        //appCompatButton9.perform(scrollTo(), click());
-        appCompatButton9.perform(click());
+                        isDisplayed()));*/
+        appCompatButton9.perform(scrollTo(), click());
+        //appCompatButton9.perform(click());
 
         //CLICANDO NO BOTÃO SAIR
         ViewInteraction appCompatButton10 = onView(
@@ -405,20 +408,20 @@ public class StorageTest {
         //CONFIRMANDO SAIDA
         ViewInteraction appCompatButton11 = onView(
                 allOf(withId(android.R.id.button1), withText("CONFIRMAR"),
-                        childAtPosition(
+                        /*childAtPosition(
                                 allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
                                         childAtPosition(
                                                 withClassName(is("android.widget.LinearLayout")),
                                                 3)),
                                 3),
-                        isDisplayed()));
-                        /*childAtPosition(
+                        isDisplayed()));*/
+                        childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
-                                3)));*/
-        appCompatButton11.perform(click());
-        //appCompatButton11.perform(scrollTo(), click());
+                                3)));
+        //appCompatButton11.perform(click());
+        appCompatButton11.perform(scrollTo(), click());
 
     }
 
