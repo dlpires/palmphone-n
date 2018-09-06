@@ -277,7 +277,7 @@ public class CameraTest {
         }
 
         //SAINDO DA CAMERA
-        pressBack();
+        //pressBack();
 
         //ESPERA DE 2 SEGUNDOS
         try {
@@ -287,7 +287,7 @@ public class CameraTest {
         }
 
         //CLICANDO NO BOTÃO FINALIZAR CHAMADA
-        ViewInteraction appCompatButton5 = onView(
+        /*ViewInteraction appCompatButton5 = onView(
                 allOf(withId(R.id.buttonFinalizar), withText("FINALIZAR CHAMADA"),
                         childAtPosition(
                                 allOf(withId(R.id.linearLayoutDigRA),
@@ -320,11 +320,11 @@ public class CameraTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 3)));*/
-        appCompatButton6.perform(click());
+        //appCompatButton6.perform(click());
         //appCompatButton6.perform(scrollTo(), click());
 
         //ESPERA DE 2 SEGUNDOS
-        try {
+        /*try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -340,10 +340,10 @@ public class CameraTest {
                                 1),
                         isDisplayed()));
         appCompatImageButton.perform(click());*/
-        pressBack();
+        //pressBack();
 
         //ESPERA DE 2 SEGUNDOS
-        try {
+        /*try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -383,11 +383,11 @@ public class CameraTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 3)));*/
-        appCompatButton9.perform(click());
+        //appCompatButton9.perform(click());
         //appCompatButton9.perform(scrollTo(), click());
 
         //SAINDO DO SISTEMA
-        ViewInteraction appCompatButton7 = onView(
+        /*ViewInteraction appCompatButton7 = onView(
                 allOf(withId(R.id.buttonSair), withText("Sair"),
                         childAtPosition(
                                 allOf(withId(R.id.formLogout),
@@ -420,15 +420,15 @@ public class CameraTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 3)));*/
-        appCompatButton10.perform(click());
+        //appCompatButton10.perform(click());
         //appCompatButton10.perform(scrollTo(), click());
 
         //ESPERA DE 2 SEGUNDOS
-        try {
+        /*try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @After
