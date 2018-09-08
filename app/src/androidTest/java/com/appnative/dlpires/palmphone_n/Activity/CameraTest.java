@@ -260,20 +260,20 @@ public class CameraTest {
             //CONFIRMANDO LEITURA DE CHAMADA
             ViewInteraction appCompatButton4 = onView(
                     allOf(withId(android.R.id.button1), withText("CONFIRMAR"),
-                            childAtPosition(
+                            /*childAtPosition(
                                     allOf(withClassName(is("com.android.internal.widget.ButtonBarLayout")),
                                             childAtPosition(
                                                     withClassName(is("android.widget.LinearLayout")),
                                                     3)),
                                     3),
-                            isDisplayed()));
-                            /*childAtPosition(
+                            isDisplayed()));*/
+                            childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
-                                3)));*/
-            appCompatButton4.perform(click());
-            //appCompatButton4.perform(scrollTo(), click());
+                                3)));
+            //appCompatButton4.perform(click());
+            appCompatButton4.perform(scrollTo(), click());
         }
 
         //SAINDO DA CAMERA
